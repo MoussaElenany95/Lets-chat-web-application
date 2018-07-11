@@ -21,6 +21,12 @@
                     <form method="post" action="" enctype="multipart/form-data">
 
                             <div class="group">
+                                <label for="img" id="img-label">
+                                    <img src="" id="preview-img">
+                                </label>
+                                <input type="file" name="img" id="img" class="file">
+                            </div>
+                            <div class="group">
                                 <label for="full_name" id="full-name-label">Full name</label>
                                 <input type="text" name="full_name" id="full_name" class="control" placeholder="Enter Full Name ...">
                             </div>
@@ -34,14 +40,7 @@
                                 <input type="password" name="password" id="password" class="control" placeholder="Enter Password ...">
                             </div>
                             <div class="group">
-                                <label for="img" id="img-label">Choose image</label>
-                                <input type="file" name="img" id="img" class="file">
-                            </div>
-                            <div class="group">
-                                <img src="" id="preview-img">
-                            </div>
-                            <div class="group">
-                                <input type="submit" name="signup_submit" id="signup_submit" class="btn signup-btn" value="Create account">
+                                <input type="submit" name="signup_submit" id="signup_submit" class="btn signup-btn control" value="Create account">
                             </div>
                     </form>
                 </div>
