@@ -1,4 +1,12 @@
 $(function () {
+    $("#signup-link").click(function () {
+       $("#login-form").stop().fadeOut(200);
+        $("#signup-form").delay(500).fadeIn();
+    });
+    $("#login-link").click(function () {
+        $("#signup-form").stop().fadeOut(200);
+        $("#login-form").delay(500).fadeIn();
+    });
 
     $("#img").on("change",function (e) {
         readURL(this);

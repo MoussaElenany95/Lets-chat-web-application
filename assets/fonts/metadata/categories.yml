@@ -932,7 +932,7 @@ maps:
     - shopping-basket
     - shopping-cart
     - shower
-    - street-view
+    - street-views
     - subway
     - suitcase
     - tag
@@ -1424,7 +1424,7 @@ users-people:
     - portrait
     - power-off
     - smile
-    - street-view
+    - street-views
     - user
     - user-alt
     - user-alt-slash
