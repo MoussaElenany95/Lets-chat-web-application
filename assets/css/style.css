@@ -4,6 +4,7 @@
     --color-green-light:#7ed56f;
     --color-green-dark:#28b485 ;
     --color-silver:#e4e7ea ;
+    --color-silver2:#54667a ;
     --color-white:#fff;
     --color-black:#000 ;
 }
@@ -133,6 +134,150 @@ label{
 .login-link:hover{
     cursor: pointer;
 }
+/* Home design of chat*/
+#nav{
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(to right , var(--color-green-light),var(--color-green-dark));
+    box-shadow: .3rem .8rem .5rem 0 rgba(0,0,0,.2);
+}
+.chat-container{
+    display: flex;
+    display: -webkit-flex;
+    width: 100%;
+    height: 90vh;
+    overflow: hidden;
+}
+#chat-left-area{
+    width: 25%;
+    box-shadow: .3rem 0 .5rem  0 rgba(0,0,0,.5);
+    background: var(--color-white);
+    /*position: relative; unused because overflow  property is used */
+    overflow: auto;
+
+}
+#chat-left-area::before{
+    position: absolute;
+    content: "Profile";
+    width: 25%;  /*25% because parent class position is not relative  */
+    height: 10vh;
+    top: 0;
+    text-align: center;
+    box-shadow: .3rem .8rem .5rem 0 rgba(0,0,0,.2);
+    background: linear-gradient(to right , var(--color-green-light),var(--color-green-dark));
+    line-height: 10vh;
+    font-size: 1.5rem;
+    color: var(--color-white);
+    font-weight: 500;
+
+}
+#chat-right-area{
+    width: 75%;
+    height: 90vh;
+
+}
+.profile-info{
+    width: 100%;
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+}
+.profile-info ul li{
+    display: block;
+    font-size: 1.5rem;
+    padding-top:1rem;
+    color: var(--color-silver2);
+    font-weight: 500;
+}
+.profile-settings{
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0;
+    border-bottom: 2px solid var(--color-silver);
+}
+.profile-settings h1{
+    color: var(--color-silver2);
+    font-size: 1.5rem;
+    line-height: 10vh;
+
+}
+.profile-settings h1:hover{
+    cursor: pointer;
+    background: linear-gradient(to right , var(--color-green-light),var(--color-green-dark));
+
+}
+
+.ul-settings{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+.ul-settings li a{
+    text-decoration: none;
+    display: block;
+    font-size: 1.5rem;
+    padding:1.5rem 0;
+    color: var(--color-silver2);
+    font-weight: 500;
+    position: relative;
+}
+.ul-settings li:hover {
+    background: linear-gradient(to right , var(--color-green-light),var(--color-green-dark));
+
+}
+.back-hover{
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0,0,0,.2);
+    transition: all .3s;
+    position: absolute;
+}
+.ul-settings li a:hover{
+    color: var(--color-white);
+}
+.ul-settings li a:hover .back-hover{
+    width: 100%;
+}
+
+.profile-img-span{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    transition: all .5s;
+}
+.profile-img-span:hover .profile-img{
+    transform: scale(1.3);
+}
+
+.chat-messages{
+    width: 100%;
+    height: 75vh;
+
+}
+.chat-form-area{
+    width: 100%;
+    height: 15vh;
+    background-color: #28b445;
+
+}
+/* width  scrollbar*/
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--color-silver);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-silver2);
+    border-radius: 10px;
+}
 @media(max-width: 750px)  {
     .signup-left{
         display: none;
@@ -140,5 +285,11 @@ label{
     .signup-right{
         width: 100%;
     }
+    #chat-left-area{
+        display: none;
 
+    }
+    #chat-right-area{
+        width: 100%;
+    }
 }
