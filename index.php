@@ -53,7 +53,7 @@
                             <input type="submit" name="signup_submit" id="signup_submit" class="btn signup-btn control" value="Create account">
                         </div>
                         <div class="group">
-                            <h6  id="login-link"  class="login-link">Already have an account<br> login</h6>
+                            <h6  id="login-link"  class="login-link">Already have an account<br> <b>login</b></h6>
                         </div>
                     </form>
 
@@ -74,7 +74,7 @@
                                 <input type="submit" name="login_submit" id="signup_submit" class="btn signup-btn control" value="Login">
                             </div>
                         <div class="group">
-                            <h6 id="signup-link" class="login-link">Don't have an account<br> Signup now </h6>
+                            <h6 id="signup-link" class="login-link">Don't have an account<br><b> Signup now</b> </h6>
                         </div>
                     </form>
                 </div>
