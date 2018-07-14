@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create new account </title>
+    <title>Messenger</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/fonts/css/fontawesome.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="group">
                             <label for="img" id="img-label">
-                                <img src="../assets/images/profile.png" id="preview-img">
+                                <img src="assets/images/profile.png" id="preview-img">
                             </label>
                             <input type="file" name="img" id="img" class="file">
                         </div>
@@ -63,15 +63,15 @@
                             </div>
                             <div class="group">
                                 <label for="email" id="email-label">Email</label>
-                                <input type="email" name="email" id="email" class="control" placeholder="Enter Email ...">
+                                <input type="email" name="email" id="login-email" class="control" placeholder="Enter Email ...">
                             </div>
 
                             <div class="group">
                                 <label for="password" id="password-label">Password</label>
-                                <input type="password" name="password" id="password" class="control" placeholder="Enter Password ...">
+                                <input type="password" name="password" id="login-password" class="control" placeholder="Enter Password ...">
                             </div>
                             <div class="group">
-                                <input type="submit" name="login_submit" id="signup_submit" class="btn signup-btn control" value="Login">
+                                <input type="submit" name="login_submit" id="login_submit" class="btn signup-btn control" value="Login">
                             </div>
                         <div class="group">
                             <h6 id="signup-link" class="login-link">Don't have an account<br><b> Signup now</b> </h6>

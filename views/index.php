@@ -49,14 +49,7 @@
                                 <span class="message-time">1 day</span>
                             </div>
                             <div class="left-message-content">
-                                <p>Lorem ipsum dolor sit
-                                    amet, consectetur adipisicing elit. A,
-                                    accusantium aliquid assumenda atque
-                                    blanditiis cupiditate et, expedita, fugiat harum incidunt laudantium magnam maxime
-                                    minus nulla obcaecati quas quia quos reiciendis.
-                                    Lorem ipsum dolor sit
-
-                                </p>
+                                <p>بسم الله الرحمن الرحيم وبه نستعين والصلاة والسلام على أشرف المرسلين سيدنا ونبينا محمد وعلى اله وصحبه وسلم اللهم صل على سيدنا ونبينا محمد وعلى آله وصحبه وسلم اللهم يا مثبت القلوب ثبت قلوبنا على طاعتك</p>
                             </div>
 
                         </div>
