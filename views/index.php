@@ -41,12 +41,13 @@
                     <div class="left-message-area">
                         <div class="sender-img-block">
                             <img src="../assets/images/profile.png"  class="sender-img">
+                            <span class="online-icon"></span>
                         </div>
                         <div class="left-message">
 
                             <div class="sender-name-date">
                                 <span class="sender-name">Moussa Elenany</span>
-                                <span class="message-time">1 day</span>
+                                <span class="message-time">1 day ago</span>
                             </div>
                             <div class="left-message-content">
                                 <p>بسم الله الرحمن الرحيم وبه نستعين والصلاة والسلام على أشرف المرسلين سيدنا ونبينا محمد وعلى اله وصحبه وسلم اللهم صل على سيدنا ونبينا محمد وعلى آله وصحبه وسلم اللهم يا مثبت القلوب ثبت قلوبنا على طاعتك</p>
@@ -57,12 +58,13 @@
                     <div class="left-message-area">
                         <div class="sender-img-block">
                             <img src="../assets/images/profile.png"  class="sender-img">
+                            <span class="offline-icon"></span>
                         </div>
                         <div class="left-message">
 
                             <div class="sender-name-date">
                                 <span class="sender-name">Moussa Elenany</span>
-                                <span class="message-time">1 day</span>
+                                <span class="message-time">1 day ago</span>
                             </div>
                             <div class="left-message-content">
                                 <p>Lorem ipsum dolor sit
@@ -76,9 +78,52 @@
 
                         </div>
                     </div>
+                    <div class="right-message-area">
+                        <div class="right-message">
+
+                            <div class="right-sender-name-date">
+
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <div class="right-message-content">
+                                <p>
+                                    بسم الله الرحمن الرحيم وبه نستعين والصلاة والسلام على أشرف المرسلين سيدنا ونبينا محمد وعلى اله وصحبه وسلم اللهم صل على سيدنا ونبينا محمد وعلى آله وصحبه وسلم اللهم يا مثبت القلوب ثبت قلوبنا على طاعتك
+
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="right-message-area">
+                        <div class="right-message">
+
+                            <div class="right-sender-name-date">
+
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <div class="right-message-content">
+                                <p>
+                                    اللهم يا مثبت القلوب ثبت قلوبنا على طاعتك
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="chat-form-area">
+                    <form class="chat-form-container">
 
+                            <div class="text-area-controller">
+                                <textarea name="" id=""  class="message-textarea">
+                                </textarea>
+                            </div>
+                            <div class="chat-file-upload">
+                                <label for="chat-file-upload" class="file-upload-label"></label>
+                                <input type="file" name="chat-upload-file" id="chat-file-upload">
+                            </div>
+
+                    </form>
                 </div>
             </section>
         </div>
