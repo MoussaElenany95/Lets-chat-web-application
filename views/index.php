@@ -109,6 +109,29 @@
 
                         </div>
                     </div>
+                    <div class="left-message-area">
+                        <div class="sender-img-block">
+                            <img src="../assets/images/profile.png"  class="sender-img">
+                            <span class="offline-icon"></span>
+                        </div>
+                        <div class="left-message">
+
+                            <div class="sender-name-date">
+                                <span class="sender-name">Moussa Elenany</span>
+                                <span class="message-time">1 day ago</span>
+                            </div>
+                            <div class="left-message-content">
+                                <p>Lorem ipsum dolor sit
+                                    amet, consectetur adipisicing elit. A,
+                                    accusantium aliquid assumenda atque
+                                    blanditiis cupiditate et, expedita, fugiat harum incidunt laudantium magnam maxime
+                                    minus nulla obcaecati quas quia quos reiciendis.
+
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="chat-form-area">
                     <form class="chat-form-container">
@@ -126,6 +149,7 @@
                     </form>
                 </div>
             </section>
+
         </div>
         <script src="../assets/js/jquery.min.js"></script>
         <script src="../assets/js/index.js"></script>
