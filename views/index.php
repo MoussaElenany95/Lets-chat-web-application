@@ -7,7 +7,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Home</title>
         <link rel="stylesheet" href="../assets/css/style.css">
-        <link rel="stylesheet" href="../assets/fonts/css/fontawesome.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
 
     </head>
@@ -115,14 +114,15 @@
                     <form class="chat-form-container">
 
                             <div class="text-area-controller">
-                                <textarea name="" id=""  class="message-textarea">
-                                </textarea>
+                                <textarea name="" id=""  class="message-textarea" placeholder="Enter message here"></textarea>
                             </div>
                             <div class="chat-file-upload">
-                                <label for="chat-file-upload" class="file-upload-label"></label>
+                                <label for="chat-file-upload" class="file-upload-label">
+                                    <img class="file-upload-icon" src="../assets/images/img-upload.png">
+                                    <img class="file-upload-icon" src="../assets/images/file-upload.png">
+                                </label>
                                 <input type="file" name="chat-upload-file" id="chat-file-upload">
                             </div>
-
                     </form>
                 </div>
             </section>

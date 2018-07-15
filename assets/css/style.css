@@ -381,15 +381,44 @@ label{
     width: 100%;
     height: 15vh;
     border-top: 2px solid var(--color-silver);
-    padding: 2rem   ;
+    padding: 1rem   ;
     display: flex;
     display: -webkit-flex;
 }
 .text-area-controller{
     width: 50%;
 }
+.message-textarea{
+    width: 100%;
+    padding: .5rem;
+    height: 4rem;
+    resize: none;
+    border: 1px solid var(--color-silver);
+    border-radius: 3px;
+    transition: all 1s;
+}
+.message-textarea:focus{
+    outline: none;
+    border:1px solid var(--color-green-light);
+    /*border-radius: 3px;*/
+}
 .chat-file-upload{
     width: 50%;
+    padding-top: .5rem;
+    text-align: left;
+}
+.file-upload-icon{
+    height: 3rem;
+    margin-left:3rem ;
+    width: 3rem;
+}
+#chat-file-upload{
+    display: none;
+}
+::-webkit-input-placeholder{
+    font-size: 1.5rem;
+    font-family: "Poppins",sans-serif;
+    letter-spacing: .3rem;
 }
 /* width  scrollbar*/
 ::-webkit-scrollbar {
