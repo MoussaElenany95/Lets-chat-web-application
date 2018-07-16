@@ -12,8 +12,12 @@ $(function () {
         readURL(this);
     });
 
-    $(".profile-settings").hover(function(e) {
+    $(".profile-settings").click(function(e) {
         $(".ul-settings").stop().slideToggle();
+    });
+
+    $(".custom-bar-icon").click(function () {
+        $("#chat-left-area").stop().slideToggle();
     });
 });
 
