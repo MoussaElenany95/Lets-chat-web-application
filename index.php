@@ -8,7 +8,7 @@
     <title>Messenger</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
-
+    <link rel="icon"  href="assets/images/favicon.png">
 </head>
 <body>
     <div class="signup-container">
