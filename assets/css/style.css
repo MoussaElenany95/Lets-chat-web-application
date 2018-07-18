@@ -35,7 +35,7 @@ label{
 .signup-left{
     width: 70%;
     position: relative;
-    background-image: linear-gradient(to right bottom,rgba(40,180,133,.9) 50%, transparent 50%),url("../images/signup-bg.jpg");
+    background-image: linear-gradient(to right bottom,rgba(83,157,194,.7) 50%, transparent 50%),url("../images/signup-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
 }
