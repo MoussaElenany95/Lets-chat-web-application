@@ -20,10 +20,6 @@ $(function () {
         $("#login-form").delay(500).fadeIn();
     });
 
-    $("#img").on("change",function (e) {
-        readURL(this);
-    });
-
     $(".profile-settings").click(function(e) {
         $(".ul-settings").stop().slideToggle();
     });
@@ -34,17 +30,3 @@ $(function () {
     });
 });
 
-function readURL(input) {
-
-    if (input.files && input.files[0]) {
-
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            $('#preview-img').attr('src', e.target.result);
-            $('#preview-img').show();
-        };
-
-       reader.readAsDataURL(input.files[0]);
-    }
-}

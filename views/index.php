@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
     <link rel="icon"  href="../assets/images/favicon.png">
+    <style>
+        span{
+            color: red;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="signup-container">
@@ -25,7 +31,7 @@
             <div class="signup-right">
                 <div class="form-area">
 
-                    <form id="signup-form" method="post"  action="" enctype="multipart/form-data">
+                    <form id="signup-form" method="post"  action="" enctype="multipart/form-data" >
                         <div class="group">
                             <h1 class="form-heading">CREATE NEW ACCOUNT</h1>
                         </div>
@@ -33,20 +39,24 @@
                             <label for="img" id="img-label">
                                 <img src="../assets/images/profile.png" id="preview-img">
                             </label>
-                            <input type="file" name="img" id="img" class="file">
+                            <input  type="file" name="profile_img" id="img" class="file">
+                            <span id="image_feedback"></span>
                         </div>
                         <div class="group">
                             <label for="full_name" id="full-name-label">Full name</label>
-                            <input type="text" name="full_name" id="full_name" class="control" placeholder="Enter Full Name ...">
+                            <input required type="text" name="full_name" id="full_name" class="control" placeholder="Enter Full Name ...">
+                            <span id="name_feedback"></span>
                         </div>
                         <div class="group">
                             <label for="email" id="email-label">Email</label>
-                            <input type="email" name="email" id="email" class="control" placeholder="Enter Email ...">
+                            <input  required type="email" name="email" id="email" class="control" placeholder="Enter Email ...">
+                            <span id="email_feedback"></span>
                         </div>
 
                         <div class="group">
                             <label for="password" id="password-label">Password</label>
-                            <input type="password" name="password" id="password" class="control" placeholder="Enter Password ...">
+                            <input required type="password" name="password" id="password" class="control" placeholder="Enter Password ...">
+                            <span id="password_feedback"></span>
                         </div>
                         <div class="group">
                             <input type="submit" name="signup_submit" id="signup_submit" class="btn signup-btn control" value="Create account">
@@ -82,5 +92,7 @@
     </div>
     <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="../assets/js/index.js" type="text/javascript"></script>
+    <script src="../assets/js/signup.js" type="text/javascript"></script>
+
 </body>
 </html>
