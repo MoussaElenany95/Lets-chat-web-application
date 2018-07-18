@@ -6,9 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Messenger</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
-    <link rel="icon"  href="assets/images/favicon.png">
+    <link rel="icon"  href="../assets/images/favicon.png">
 </head>
 <body>
     <div class="signup-container">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="group">
                             <label for="img" id="img-label">
-                                <img src="assets/images/profile.png" id="preview-img">
+                                <img src="../assets/images/profile.png" id="preview-img">
                             </label>
                             <input type="file" name="img" id="img" class="file">
                         </div>
@@ -80,7 +80,7 @@
             </div>
 
     </div>
-    <script src="assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="assets/js/index.js" type="text/javascript"></script>
+    <script src="../assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/js/index.js" type="text/javascript"></script>
 </body>
 </html>
