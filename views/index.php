@@ -31,7 +31,7 @@
             <div class="signup-right">
                 <div class="form-area">
 
-                    <form id="signup-form" method="post"  action="" enctype="multipart/form-data" >
+                    <form id="signup-form" method="post"  action="../route/route.php" enctype="multipart/form-data" >
                         <div class="group">
                             <h1 class="form-heading">CREATE NEW ACCOUNT</h1>
                         </div>
@@ -39,7 +39,7 @@
                             <label for="img" id="img-label">
                                 <img src="../assets/images/profile.png" id="preview-img">
                             </label>
-                            <input  type="file" name="profile_img" id="img" class="file">
+                            <input  type="file" name="img" id="img" class="file">
                             <span id="image_feedback"></span>
                         </div>
                         <div class="group">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="group">
                             <label for="email" id="email-label">Email</label>
-                            <input  required type="email" name="email" id="email" class="control" placeholder="Enter Email ...">
+                            <input  required  name="email" id="email" class="control" placeholder="Enter Email ...">
                             <span id="email_feedback"></span>
                         </div>
 
@@ -66,18 +66,18 @@
                         </div>
                     </form>
 
-                    <form id="login-form" method="post" action="" enctype="multipart/form-data">
+                    <form id="login-form" method="post" action="../route/route.php" enctype="multipart/form-data">
                             <div class="group">
                                 <h1 class="form-heading">Login</h1>
                             </div>
                             <div class="group">
                                 <label for="email" id="email-label">Email</label>
-                                <input type="email" name="email" id="login-email" class="control" placeholder="Enter Email ...">
+                                <input type="email" name="login_email" id="login-email" class="control" placeholder="Enter Email ...">
                             </div>
 
                             <div class="group">
                                 <label for="password" id="password-label">Password</label>
-                                <input type="password" name="password" id="login-password" class="control" placeholder="Enter Password ...">
+                                <input type="password" name="login_password" id="login-password" class="control" placeholder="Enter Password ...">
                             </div>
                             <div class="group">
                                 <input type="submit" name="login_submit" id="login_submit" class="btn signup-btn control" value="Login">

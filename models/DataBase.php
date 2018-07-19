@@ -1,15 +1,15 @@
 <?php
     //Database  class
-class DataBase
+abstract  class DataBase
 {
     private $host = "localhost";
     private $dbname = "messenger";
     private $username = "root";
     private $password = "";
-    protected $conn;
+    protected  $conn;
 
     //Database constructor
-    public function __construct()
+     function  __construct()
     {
         //PDO connection to database
         try{

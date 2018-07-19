@@ -1,5 +1,20 @@
 $(function () {
 
+    window.onbeforeunload = function () {
+
+        localStorage.setItem("login_email", $('#login-email').val());
+
+
+    };
+    window.onload = function() {
+
+        var username = localStorage.getItem("login_email");
+
+        $('#login-email').val(username);
+
+    };
+
+    //validate signup inputs
     var form = $("#signup-form");
 
     validateInputs(form);
@@ -66,9 +81,13 @@ function validateImageField(image,event) {
 //validate name field
 function validateNameField(name,event) {
 
-    if (!isValidName(name.val())){
+    if (!isValidName(name.val()) ){
         name.css( "box-shadow","0 0 4px #811");
         $("#name_feedback").text("Please enter a valid name ");
+        event.preventDefault();
+    }else if(name.val().length > 32){
+        name.css( "box-shadow","0 0 4px #811");
+        $("#name_feedback").text("Maximum Password 32 characters");
         event.preventDefault();
     }else{
         name.css( "box-shadow","0 0 4px #181");
@@ -79,9 +98,13 @@ function validateNameField(name,event) {
 //validate email field
 function validatePasswordField(password,event) {
 
-    if (!isValidPassword(password.val())){
+    if (password.val().length < 6 ){
         password.css( "box-shadow","0 0 4px #811");
         $("#password_feedback").text("Minimum Password 6 characters");
+        event.preventDefault();
+    }else if(password.val().length > 32){
+        password.css( "box-shadow","0 0 4px #811");
+        $("#password_feedback").text("Maximum Password 32 characters");
         event.preventDefault();
     }else{
         password.css( "box-shadow","0 0 4px #181");
@@ -98,10 +121,10 @@ function validateEmailField(email,event) {
         event.preventDefault();
     }else{
         $.ajax({
-            url:"../Controllers/user_route.php",
+            url:"../../route/route.php",
             type:"POST",
             dataType:"JSON",
-            data:{"search_email":email.val()},success:function (response) {
+            data:{"search_user":email.val()},success:function (response) {
                 if (response.success){
                     email.css( "box-shadow","0 0 4px #811");
                     $("#email_feedback").text("Email already exist, choose another");
@@ -120,18 +143,12 @@ function validateEmailField(email,event) {
 //validate name
 function isValidName(name) {
 
-    return name.length > 2 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name);
+    return name.length > 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name);
 }
 
 //validate email
 function isValidEmail(email) {
     return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)
-}
-
-
-//validate password
-function isValidPassword(password) {
-    return password.length > 6 ;
 }
 
 //read url of img
