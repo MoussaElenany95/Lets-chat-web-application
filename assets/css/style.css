@@ -26,6 +26,7 @@ body{
 label{
     font-size: 1.5rem;
 }
+
 .signup-container{
     display: flex;
     display: -webkit-flex;
@@ -43,6 +44,8 @@ label{
     width: 30%;
     background: var(--color-white);
     position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .title{
     position: absolute;

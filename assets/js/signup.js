@@ -120,26 +120,30 @@ function validateEmailField(email,event) {
         $("#email_feedback").text("Please enter a valid email address");
         event.preventDefault();
     }else{
-        $.ajax({
-            url:"../../route/route.php",
-            type:"POST",
-            dataType:"JSON",
-            data:{"search_user":email.val()},success:function (response) {
-                if (response.success){
-                    email.css( "box-shadow","0 0 4px #811");
-                    $("#email_feedback").text("Email already exist, choose another");
-                    event.preventDefault();
-                }else {
-                    email.css( "box-shadow","0 0 4px #181");
-                    $("#email_feedback").empty();
-                }
-            },
 
+        checkEmailAjax(email).done(function (result) {
+            if (result.success){
+                event.preventDefault();
+                email.css( "box-shadow","0 0 4px #811");
+                $("#email_feedback").text("Email already exist, choose another");
+            }else {
+                email.css( "box-shadow","0 0 4px #181");
+                $("#email_feedback").empty();
+            }
         });
     }
 
 }
+//Ajax check email
+function checkEmailAjax(email) {
+    return $.ajax({
+        url:"../../route/route.php",
+        type:"POST",
+        dataType:"JSON",
+        data:{"search_user":email.val()}
 
+    });
+}
 //validate name
 function isValidName(name) {
 
