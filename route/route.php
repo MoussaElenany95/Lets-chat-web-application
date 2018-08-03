@@ -1,22 +1,31 @@
 <?php
     include "../controlers/UserController.php";
+    session_start();
+
     //user login
     if (isset($_POST['login_submit'])){
 
-        $email    = $_POST['login_email'];
-        $password = $_POST['login_password'];
-
-        if (UserController::login($email,$password)){
-            echo "OK";
+        $email    = trim(htmlspecialchars($_POST['login_email']));
+        $password = htmlspecialchars($_POST['login_password']);
+        $login    = UserController::login($email,$password);
+        if ($login){
+            $_SESSION['user_name'] = $login->name;
+            $_SESSION['user_id']   = $login->id;
+            $_SESSION['img']       = $login->img;
+            header("location:../views/home.php");
+        }else{
+            $_SESSION['login_error'] = "Incorrect email or password";
+            header("location:../views/index.php");
         }
 
 
     }
 
     if(isset($_POST['signup_submit'])){
-            $data['name']     = $_POST['full_name'];
-            $data['email']    = $_POST['email'];
-            $data['password'] = $_POST['password'];
+
+            $data['name']     = trim(htmlspecialchars($_POST['full_name']));
+            $data['email']    = trim(htmlspecialchars($_POST['email']));
+            $data['password'] = trim(htmlspecialchars($_POST['password']));
             $data['img']      = $_FILES['img'];
 
             if (UserController::signup($data)){
@@ -26,7 +35,7 @@
 
     //user already exist
     if (isset($_POST['search_user'])){
-        $email    = $_POST['search_user'];
+        $email    = trim(htmlspecialchars($_POST['search_user']));
         $response['success']  = false;
 
         if (UserController::searchForUserByEmail($email)){
@@ -35,4 +44,9 @@
 
         echo  json_encode($response);
         exit();
+    }
+    //logout
+    if (isset($_GET['logout'])){
+        session_destroy();
+        header("location:../views/index.php");
     }

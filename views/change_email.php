@@ -34,6 +34,7 @@
                         <li><a href="change_name.php">Change Name<span class="back-hover"></span></a></li>
                         <li><a href="change_email.php">Change Email<span class="back-hover"></span></a></li>
                         <li><a href="change_password.php">Change Password<span class="back-hover"></span></a></li>
+                        <li><a href="../route/route.php?logout=1">Logout</a></li>
                     </ul>
                 </div>
                 <div class="chats">

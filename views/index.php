@@ -1,3 +1,8 @@
+<?php session_start();
+    if (isset($_SESSION['user_id'])){
+        header("location:home.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +35,6 @@
             </div>
             <div class="signup-right">
                 <div class="form-area">
-
                     <form id="signup-form" method="post"  action="../route/route.php" enctype="multipart/form-data" >
                         <div class="group">
                             <h1 class="form-heading">CREATE NEW ACCOUNT</h1>
@@ -67,17 +71,25 @@
                     </form>
 
                     <form id="login-form" method="post" action="../route/route.php" enctype="multipart/form-data">
+                        <!-- Login error message     -->
+                        <?php if (isset($_SESSION['login_error'])):?>
+                            <div class="alert danger-alert">
+                                <?php echo $_SESSION['login_error'];?>
+                            </div>
+                        <?php endif;?>
+                        <?php unset($_SESSION['login_error'])?>
+
                             <div class="group">
                                 <h1 class="form-heading">Login</h1>
                             </div>
                             <div class="group">
                                 <label for="email" id="email-label">Email</label>
-                                <input type="email" name="login_email" id="login-email" class="control" placeholder="Enter Email ...">
+                                <input type="email" required name="login_email" id="login-email" class="control" placeholder="Enter Email ...">
                             </div>
 
                             <div class="group">
                                 <label for="password" id="password-label">Password</label>
-                                <input type="password" name="login_password" id="login-password" class="control" placeholder="Enter Password ...">
+                                <input type="password"  required name="login_password" id="login-password" class="control" placeholder="Enter Password ...">
                             </div>
                             <div class="group">
                                 <input type="submit" name="login_submit" id="login_submit" class="btn signup-btn control" value="Login">

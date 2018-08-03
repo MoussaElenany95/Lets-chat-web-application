@@ -2,13 +2,13 @@ $(function () {
 
     window.onbeforeunload = function () {
 
-        localStorage.setItem("login_email", $('#login-email').val());
+        sessionStorage.setItem("login_email", $('#login-email').val());
 
 
     };
     window.onload = function() {
 
-        var username = localStorage.getItem("login_email");
+        var username = sessionStorage.getItem("login_email");
 
         $('#login-email').val(username);
 
@@ -81,7 +81,7 @@ function validateImageField(image,event) {
 //validate name field
 function validateNameField(name,event) {
 
-    if (!isValidName(name.val()) ){
+    if (!isValidName(name.val().trim()) ){
         name.css( "box-shadow","0 0 4px #811");
         $("#name_feedback").text("Please enter a valid name ");
         event.preventDefault();
@@ -114,7 +114,7 @@ function validatePasswordField(password,event) {
 }
 //validate email field
 function validateEmailField(email,event) {
-    if (!isValidEmail(email.val())){
+    if (!isValidEmail(email.val().trim())){
 
         email.css( "box-shadow","0 0 4px #811");
         $("#email_feedback").text("Please enter a valid email address");
@@ -140,19 +140,19 @@ function checkEmailAjax(email) {
         url:"../../route/route.php",
         type:"POST",
         dataType:"JSON",
-        data:{"search_user":email.val()}
+        data:{"search_user":email.val().trim()}
 
     });
 }
 //validate name
 function isValidName(name) {
 
-    return name.length > 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name);
+    return name.length > 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name.trim());
 }
 
 //validate email
 function isValidEmail(email) {
-    return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email)
+    return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.trim())
 }
 
 //read url of img

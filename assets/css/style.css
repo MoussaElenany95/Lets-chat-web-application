@@ -441,7 +441,6 @@ label{
     display: none;
 }
 .emojes{
-    display: block;
     width: 100%;
     height: 5vh;
     padding: .3rem;
@@ -456,6 +455,23 @@ label{
 }
 .change-form{
     width: 40%;
+}
+.alert{
+    width: 100%;
+    height: 35px;
+    text-align: left;
+    padding: 0 1rem;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    color: white;
+    line-height: 35px;
+}
+.success-alert{
+
+}
+.danger-alert{
+    background-color: #d9534f;
 }
 ::-webkit-input-placeholder{
     font-size: 1.5rem;

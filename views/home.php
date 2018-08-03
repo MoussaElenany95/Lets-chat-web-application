@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['user_id'])){
+        header("location:index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,8 +28,8 @@
 
                     <div class="profile-info">
                         <ul>
-                            <li><span class="profile-img-span"><img src="../assets/images/signup-bg.jpg" alt="Profile image" class="profile-img"></span></li>
-                            <li>Username</li>
+                            <li><span class="profile-img-span"><img src="../uploads/<?php echo $_SESSION['img']?>" alt="Profile image" class="profile-img"></span></li>
+                            <li><?php echo $_SESSION['user_name']?></li>
                         </ul>
                     </div>
                     <div class="profile-settings">
@@ -32,6 +38,8 @@
                             <li><a href="change_name.php">Change Name<span class="back-hover"></span></a></li>
                             <li><a href="change_email.php">Change Email<span class="back-hover"></span></a></li>
                             <li><a href="change_password.php">Change Password<span class="back-hover"></span></a></li>
+                            <li><a href="../route/route.php?logout=1">Logout</a></li>
+
                         </ul>
                     </div>
                     <div class="chats">
