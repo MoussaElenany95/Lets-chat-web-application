@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,8 +25,8 @@
 
                 <div class="profile-info">
                     <ul>
-                        <li><span class="profile-img-span"><img src="../assets/images/signup-bg.jpg" alt="Profile image" class="profile-img"></span></li>
-                        <li>Username</li>
+                        <li><span class="profile-img-span"><img src="../uploads/<?php echo $_SESSION['img'];?>" alt="Profile image" class="profile-img"></span></li>
+                        <li><?php echo $_SESSION['user_name'];?></li>
                     </ul>
                 </div>
                 <div class="profile-settings">
