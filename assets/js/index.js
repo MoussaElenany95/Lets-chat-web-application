@@ -1,9 +1,9 @@
 $(function () {
+    //On resize
     var width = $(window).width();
     $(window).on("resize",function () {
        var resize = $(this).width();
         if (resize <= 800 && resize != width ){
-
             $("#chat-left-area").hide();
             $("#chat-right-area").show();
        }
@@ -15,19 +15,21 @@ $(function () {
         
 
     });
+    //Sign up link
     $("#signup-link").click(function (e) {
        $("#login-form").stop().fadeOut(200);
         $("#signup-form").delay(500).fadeIn();
     });
+    //login link
     $("#login-link").click(function (e) {
         $("#signup-form").stop().fadeOut(200);
         $("#login-form").delay(500).fadeIn();
     });
-
+    //Settings
     $(".profile-settings").click(function(e) {
         $(".ul-settings").stop().toggle();
     });
-
+    //Hide and show menu
     $(".custom-bar-icon").click(function () {
 
         $("#chat-left-area").stop().toggle();
@@ -40,6 +42,59 @@ $(function () {
         }
 
     });
+    //Change password
+    $("#change_password_form").on("submit",function (event) {
+        event.preventDefault();
 
+        var current_password = $("#current_password");
+        var new_password     = $("#new_password");
+        var confirm          = $("#confirm_password");
+        var id = $("#user_id").val();
+
+        if (validatePasswordFields(new_password,confirm)){
+            $.ajax({
+                context:this,
+                url:"../../route/route.php",
+                type:"POST",
+                dataType:"JSON",
+                data:{"check_pass":current_password.val(),"id":id},
+                success:function (result) {
+
+                    if (result.success){
+                        $("#current_error").text("");
+                        this.submit();
+                    }else{
+                        $("#current_error").text("Wrong password");
+                    }
+                }
+
+            });
+        }
+
+    });
+
+  
 });
 
+//validate password field
+function validatePasswordFields(password,confirm) {
+
+    if (password.val().length < 6 ){
+        $("#new_password_error").text("Minimum Password 6 characters");
+        return false;
+    }
+    if(password.val().length > 32){
+        $("#new_password_error").text("Maximum Password 32 characters");
+        return false;
+    }
+    if( password.val() != confirm.val()){
+        $("#confirm_password_error").text("password does't match");
+        return false;
+    }
+
+    $("#new_password_error").empty();
+    $("#confirm_password_error").empty();
+    return true;
+
+
+}

@@ -50,3 +50,21 @@
         session_destroy();
         header("location:../views/index.php");
     }
+    //Check password
+    if (isset($_POST['check_pass'])){
+
+        $password = $_POST['check_pass'];
+
+        $id       = $_POST['id'];
+
+        $response['success'] = false;
+
+        $user = UserController::searchForUserById($id);
+
+        if (password_verify($password,$user->password)){
+            $response['success'] = true;
+        }
+
+        echo json_encode($response);
+        exit();
+    }

@@ -10,7 +10,12 @@
         <link rel="stylesheet" href="../assets/css/style.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,900" rel="stylesheet">
         <link rel="icon"  href="../assets/images/favicon.png">
-
+        <style>
+            span{
+                color: red;
+                display: block;
+            }
+        </style>
     </head>
     <body>
         <nav id="nav">
@@ -44,24 +49,29 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form action="" class="change-form">
+                    <form method="post" action="../route/route.php" class="change-form" id="change_password_form">
                         <div class="group">
                             <h1 class="form-heading">Change Password</h1>
                         </div>
-
+                        <input type="hidden" id="user_id" value="<?php echo $_SESSION['user_id'];?>">
                         <div class="group">
-                            <label for="password" id="password-label">Current password</label>
-                            <input type="password" name="password" id="password" class="control" placeholder="Enter Current Password ...">
+                            <label for="current_password" id="password-label">Current password</label>
+                            <input type="password" name="password" id="current_password" class="control" placeholder="Enter Current Password ...">
+                            <span id="current_error" class=""></span>
                         </div>
 
                         <div class="group">
-                            <label for="password" id="password-label">New password</label>
-                            <input type="password" name="password" id="password" class="control" placeholder="Enter New Password ...">
+                            <label for="new_password" id="password-label">New password</label>
+                            <input type="password" name="new_password" id="new_password" class="control" placeholder="Enter New Password ...">
+                            <span id="new_password_error" class=""></span>
+
                         </div>
 
                         <div class="group">
-                            <label for="password" id="password-label">Confirm Password</label>
-                            <input type="password" name="password" id="password" class="control" placeholder="Confirm  Password ...">
+                            <label for="confirm_password" id="password-label">Confirm Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="control" placeholder="Confirm  Password ...">
+                            <span id="confirm_password_error" class=""></span>
+
                         </div>
                         <div class="group">
                             <input type="submit" name="change_password_submit" id="signup_submit" class="btn signup-btn control" value="Save Changes">

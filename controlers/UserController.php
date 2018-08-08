@@ -40,6 +40,13 @@ class UserController
 
         return $search;
     }
+    //Check user password
+    public static function searchForUserById($id){
+        $user  = new User();
+        $check = $user->findById($id);
+
+        return $check;
+    }
 
 
 

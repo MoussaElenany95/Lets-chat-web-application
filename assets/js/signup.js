@@ -95,7 +95,7 @@ function validateNameField(name,event) {
     }
 
 }
-//validate email field
+//validate password field
 function validatePasswordField(password,event) {
 
     if (password.val().length < 6 ){
