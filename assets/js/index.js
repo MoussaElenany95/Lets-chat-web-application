@@ -73,7 +73,7 @@ $(function () {
 
     });
 
-  
+
 });
 
 //validate password field
