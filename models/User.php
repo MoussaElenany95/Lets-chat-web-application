@@ -42,4 +42,11 @@ class User extends DataBase
 
         return $sql->fetchObject();
     }
+    //Update user
+    public function update($update,$id){
+
+        $sql = $this->conn->prepare("UPDATE users set {$update['type']} = ? WHERE id = ? LIMIT 1");
+
+        return $sql->execute(array($update['value'],$id));
+    }
 }

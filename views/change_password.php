@@ -48,11 +48,18 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form method="post" action="../route/route.php" class="change-form" id="change_password_form">
+                    <form method="POST" action="../route/route.php" class="change-form" id="change_password_form">
+
+                        <?php if (isset($_SESSION['password_success'])):?>
+                            <div class="alert success-alert">
+                                <?php echo $_SESSION['password_success'];?>
+                                <?php unset($_SESSION['password_success'])?>
+                            </div>
+                        <?php endif; ?>
                         <div class="group">
                             <h1 class="form-heading">Change Password</h1>
                         </div>
-                        <input type="hidden" id="user_id" value="<?php echo $_SESSION['user_id'];?>">
+                        <input type="hidden" name="id" id="user_id" value="<?php echo $_SESSION['user_id'];?>">
                         <div class="group">
                             <label for="current_password" id="password-label">Current password</label>
                             <input type="password" name="password" id="current_password" class="control" placeholder="Enter Current Password ...">
@@ -73,7 +80,7 @@
 
                         </div>
                         <div class="group">
-                            <input type="submit" name="change_password_submit" id="signup_submit" class="btn signup-btn control" value="Save Changes">
+                            <input type="submit" name="change_password" id="signup_submit" class="btn signup-btn control" value="Save Changes">
                         </div>
                     </form>
                 </div>

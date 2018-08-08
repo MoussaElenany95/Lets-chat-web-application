@@ -47,6 +47,14 @@ class UserController
 
         return $check;
     }
+    //Update password
+    public static function updateUser($update,$id){
+        $user   = new User();
+
+        $update = $user->update($update,$id);
+
+        return $update;
+    }
 
 
 

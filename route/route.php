@@ -2,7 +2,7 @@
     include "../controlers/UserController.php";
     session_start();
 
-    //user login
+//user login
     if (isset($_POST['login_submit'])){
 
         $email    = trim(htmlspecialchars($_POST['login_email']));
@@ -66,5 +66,21 @@
         }
 
         echo json_encode($response);
+        exit();
+    }
+
+    //Update password
+
+    if (isset($_POST['new_password'])){
+
+        $update['type']     = "password";
+        $update['value']    = password_hash($_POST['new_password'],PASSWORD_DEFAULT);
+        $id                 = $_POST['id'];
+
+        if (UserController::updateUser($update,$id)){
+
+            $_SESSION['password_success'] = "Password has been successfully changed ";
+        }
+        header("location:../views/change_password.php");
         exit();
     }
