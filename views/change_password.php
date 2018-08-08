@@ -13,7 +13,6 @@
         <style>
             span{
                 color: red;
-                display: block;
             }
         </style>
     </head>

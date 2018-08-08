@@ -87,7 +87,7 @@ function validatePasswordFields(password,confirm) {
     }else{
         $("#new_password_error").empty();
     }
-    
+
     if( password.val() != confirm.val()) {
         $("#confirm_password_error").text("password does't match");
         return false;
