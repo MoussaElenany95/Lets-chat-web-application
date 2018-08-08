@@ -78,22 +78,23 @@ $(function () {
 
 //validate password field
 function validatePasswordFields(password,confirm) {
-
     if (password.val().length < 6 ){
         $("#new_password_error").text("Minimum Password 6 characters");
         return false;
-    }
-    if(password.val().length > 32){
+    }else if(password.val().length > 32){
         $("#new_password_error").text("Maximum Password 32 characters");
         return false;
+    }else{
+        $("#new_password_error").empty();
     }
-    if( password.val() != confirm.val()){
+    
+    if( password.val() != confirm.val()) {
         $("#confirm_password_error").text("password does't match");
         return false;
+    }else{
+        $("#confirm_password_error").empty();
     }
 
-    $("#new_password_error").empty();
-    $("#confirm_password_error").empty();
     return true;
 
 
