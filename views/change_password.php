@@ -79,6 +79,7 @@
                             <span id="confirm_password_error" class=""></span>
 
                         </div>
+                        <input type="hidden" name="change_password" value="change_pass">
                         <div class="group">
                             <input type="submit" name="change_password" id="signup_submit" class="btn signup-btn control" value="Save Changes">
                         </div>

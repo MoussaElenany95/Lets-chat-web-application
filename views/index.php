@@ -44,12 +44,12 @@
                                 <img src="../assets/images/profile.png" id="preview-img">
                             </label>
                             <input  type="file" name="img" id="img" class="file">
-                            <span id="image_feedback"></span>
+                            <span id="image_feedback" ></span>
                         </div>
                         <div class="group">
                             <label for="full_name" id="full-name-label">Full name</label>
                             <input required type="text" name="full_name" id="full_name" class="control" placeholder="Enter Full Name ...">
-                            <span id="name_feedback"></span>
+                            <span id="name_feedback" ></span>
                         </div>
                         <div class="group">
                             <label for="email" id="email-label">Email</label>
@@ -62,8 +62,9 @@
                             <input required type="password" name="password" id="password" class="control" placeholder="Enter Password ...">
                             <span id="password_feedback"></span>
                         </div>
+                        <input type="hidden" name="signup_submit" value="signup">
                         <div class="group">
-                            <input type="submit" name="signup_submit" id="signup_submit" class="btn signup-btn control" value="Create account">
+                            <input type="submit"  id="signup_submit" class="btn signup-btn control" value="Create account">
                         </div>
                         <div class="group">
                             <h6  id="login-link"  class="login-link">Already have an account<br> <b>login</b></h6>
@@ -71,6 +72,14 @@
                     </form>
 
                     <form id="login-form" method="post" action="../route/route.php" enctype="multipart/form-data">
+
+                        <!-- Sign up message-->
+                        <?php if (isset($_SESSION['signup_success'])):?>
+                            <div class="alert success-alert">
+                                <?php echo $_SESSION['signup_success'];?>
+                            </div>
+                        <?php endif; ?>
+                        <?php unset($_SESSION['signup_success']) ?>
                         <!-- Login error message     -->
                         <?php if (isset($_SESSION['login_error'])):?>
                             <div class="alert danger-alert">

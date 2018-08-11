@@ -14,52 +14,57 @@ $(function () {
 
     };
 
+
     //validate signup inputs
     var form = $("#signup-form");
+    var img             = form.find("#img");
 
-    validateInputs(form);
+    //Delete feedback
+    $("input").on("change",function () {
+        $(this).next().text("");
+    });
+    img.change(function () {
+        if (validateImageField(img)){
 
+            readURL(this);
+        }
+    });
     form.on("submit",function (event) {
-
+        event.preventDefault();
         var img             = $(this).find("#img");
         var name            = $(this).find("#full_name");
         var email           = $(this).find("#email");
         var password        = $(this).find("#password");
 
-        validateNameField(name,event);
-        validateEmailField(email,event);
-        validatePasswordField(password,event);
-        validateImageField(img,event);
+        if (
+            validateNameField(name)
+            && validatePasswordField(password)
+            && validateImageField(img)
+            && isValidEmail(email)
+        ){
+            $.ajax({
+                url:"../../route/route.php",
+                context:this,
+                type:"POST",
+                dataType:"JSON",
+                data:{"search_user":email.val().trim()},success:function (result) {
+                    if (!result.success){
+                        $("#email_feedback").empty();
+                          this.submit();
+                    }else {
+                        $("#email_feedback").text("Email already exist enter another");
+                    }
+                }
+
+            });
+        }
+
     });
 
 });
-
-function validateInputs(form) {
-    var name            = form.find("#full_name");
-    var email           = form.find("#email");
-    var password        = form.find("#password");
-    var img             = form.find("#img");
-
-    img.change(function (event) {
-        if (validateImageField(img,event)){
-            readURL(this);
-        }
-    });
-    name.blur(function (event) {
-        validateNameField(name,event);
-    });
-    email.blur(function (event) {
-        validateEmailField(email,event);
-
-    });
-    password.blur(function (event) {
-        validatePasswordField(password,event);
-    });
-
-
-}
 //validate image
-function validateImageField(image,event) {
+function validateImageField(image) {
+
     var imageVal = image.val();
 
     var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1);
@@ -67,7 +72,6 @@ function validateImageField(image,event) {
     if (fileType !== "jpeg" && fileType!== "jpg" && fileType !== "png"){
         $("#image_feedback").text("Enter a valid image ");
         $("#preview-img").css("border","2px solid #811");
-        event.preventDefault();
        return false;
     }else{
         $("#image_feedback").empty();
@@ -79,71 +83,36 @@ function validateImageField(image,event) {
 
 }
 //validate name field
-function validateNameField(name,event) {
+function validateNameField(name) {
 
     if (!isValidName(name.val().trim()) ){
-        name.css( "box-shadow","0 0 4px #811");
         $("#name_feedback").text("Please enter a valid name ");
-        event.preventDefault();
+        return false;
     }else if(name.val().length > 32){
-        name.css( "box-shadow","0 0 4px #811");
         $("#name_feedback").text("Maximum Password 32 characters");
-        event.preventDefault();
+        return false;
     }else{
-        name.css( "box-shadow","0 0 4px #181");
         $("#name_feedback").empty();
+        return true;
     }
 
 }
 //validate password field
-function validatePasswordField(password,event) {
+function validatePasswordField(password) {
 
     if (password.val().length < 6 ){
-        password.css( "box-shadow","0 0 4px #811");
         $("#password_feedback").text("Minimum Password 6 characters");
-        event.preventDefault();
+        return false;
     }else if(password.val().length > 32){
-        password.css( "box-shadow","0 0 4px #811");
         $("#password_feedback").text("Maximum Password 32 characters");
-        event.preventDefault();
+        return false;
     }else{
-        password.css( "box-shadow","0 0 4px #181");
         $("#password_feedback").empty();
+        return true;
     }
 
 }
-//validate email field
-function validateEmailField(email,event) {
-    if (!isValidEmail(email.val().trim())){
 
-        email.css( "box-shadow","0 0 4px #811");
-        $("#email_feedback").text("Please enter a valid email address");
-        event.preventDefault();
-    }else{
-
-        checkEmailAjax(email).done(function (result) {
-            if (result.success){
-                event.preventDefault();
-                email.css( "box-shadow","0 0 4px #811");
-                $("#email_feedback").text("Email already exist, choose another");
-            }else {
-                email.css( "box-shadow","0 0 4px #181");
-                $("#email_feedback").empty();
-            }
-        });
-    }
-
-}
-//Ajax check email
-function checkEmailAjax(email) {
-    return $.ajax({
-        url:"../../route/route.php",
-        type:"POST",
-        dataType:"JSON",
-        data:{"search_user":email.val().trim()}
-
-    });
-}
 //validate name
 function isValidName(name) {
 
@@ -152,7 +121,14 @@ function isValidName(name) {
 
 //validate email
 function isValidEmail(email) {
-    return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.trim())
+
+    if(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.val().trim())){
+        $("#email_feedback").empty();
+        return true;
+    }else{
+        $("#email_feedback").text("Please enter a valid email address");
+        return false;
+    }
 }
 
 //read url of img

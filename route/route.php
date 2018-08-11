@@ -29,9 +29,10 @@
             $data['img']      = $_FILES['img'];
 
             if (UserController::signup($data)){
-                die("Successfully created");
+                $_SESSION['signup_success'] = "Account is  successfully created , check your email address ";
+                header("Location:../views/index.php");
             }
-    }
+        }
 
     //user already exist
     if (isset($_POST['search_user'])){
@@ -71,7 +72,7 @@
 
     //Update password
 
-    if (isset($_POST['new_password'])){
+    if (isset($_POST['change_password'])){
 
         $update['type']     = "password";
         $update['value']    = password_hash($_POST['new_password'],PASSWORD_DEFAULT);
