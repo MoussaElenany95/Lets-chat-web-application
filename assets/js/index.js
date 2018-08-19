@@ -72,6 +72,18 @@ $(function () {
         }
 
     });
+    //Change name form
+    $("#change_name_form").on("submit",function (event) {
+        var name = $("#name").val();
+        
+        if (!isValidName(name)) {
+            event.preventDefault();
+            $("#name_error").text("Enter a valid name");
+        }else{
+            $("#name_error").empty();
+        }
+
+    })
 
 
 });
@@ -88,7 +100,7 @@ function validatePasswordFields(password,confirm) {
         $("#new_password_error").empty();
     }
 
-    if( password.val() != confirm.val()) {
+    if( password.val() !== confirm.val()) {
         $("#confirm_password_error").text("password does't match");
         return false;
     }else{
@@ -98,4 +110,9 @@ function validatePasswordFields(password,confirm) {
     return true;
 
 
+}
+//validate name
+function isValidName(name) {
+
+    return name.length >= 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name.trim());
 }

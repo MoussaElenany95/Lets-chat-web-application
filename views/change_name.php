@@ -44,14 +44,23 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form action="" class="change-form">
+                    <form method="post" action="../route/route.php" class="change-form" id="change_name_form">
+
+                        <?php if (isset($_SESSION['name_success'])):?>
+                            <div class="alert success-alert">
+                                <?php echo $_SESSION['name_success'];?>
+                                <?php unset($_SESSION['name_success'])?>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="group">
                             <h1 class="form-heading">Change Name</h1>
                         </div>
 
                         <div class="group">
                             <label for="name" id="name-label">Full Name</label>
-                            <input type="text" name="name" id="name" class="control"  placeholder="Enter New name">
+                            <input type="text" name="name" id="name" class="control"  placeholder="Enter New name" value="<?php echo $_SESSION['user_name'];?>">
+                            <span id="name_error" style="color: red"></span>
                         </div>
 
                         <div class="group">

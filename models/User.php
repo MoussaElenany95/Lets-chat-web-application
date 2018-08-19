@@ -6,7 +6,7 @@ class User extends DataBase
 
     //Insert to users table
     public function   insert($data){
-        $name     = ucfirst(htmlspecialchars($data['name']));
+        $name     = ucwords(htmlspecialchars($data['name']));
         $email    = strtolower(htmlspecialchars($data['email']));
         $password = password_hash($data['password'],PASSWORD_DEFAULT);
         $img      = microtime(date("H")).$data['img']['name'];

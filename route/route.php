@@ -56,7 +56,7 @@
 
         $password = $_POST['check_pass'];
 
-        $id       = $_POST['id'];
+        $id       = $_SESSION['user_id'];
 
         $response['success'] = false;
 
@@ -76,12 +76,26 @@
 
         $update['type']     = "password";
         $update['value']    = password_hash($_POST['new_password'],PASSWORD_DEFAULT);
-        $id                 = $_POST['id'];
+        $id                 = $_SESSION['user_id'];
 
         if (UserController::updateUser($update,$id)){
 
             $_SESSION['password_success'] = "Password has been successfully changed ";
         }
         header("location:../views/change_password.php");
+        exit();
+    }
+    //Change password
+    if (isset($_POST['change_name_submit'])){
+
+        $update['type']     = "name";
+        $update['value']    = ucwords(trim(htmlspecialchars($_POST['name'])));
+        $id                 = $_SESSION['user_id'];
+        if (UserController::updateUser($update,$id)){
+
+            $_SESSION['name_success'] = "Name has been successfully changed ";
+            $_SESSION['user_name']        = $update['value'];
+        }
+        header("location:../views/change_name.php");
         exit();
     }
