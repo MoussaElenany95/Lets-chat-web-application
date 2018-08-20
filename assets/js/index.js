@@ -42,6 +42,26 @@ $(function () {
         }
 
     });
+    //Change photo
+    $(".change_photo").hover(function () {
+        $("#change_photo_shadow").stop().fadeIn();
+    },function () {
+        $("#change_photo_shadow").stop().fadeOut();
+
+    });
+    //preview img
+    $(".change_photo").click(function () {
+        var img_source   = $(this).find(".profile-img").prop("src");
+        var preview_area = $("#perview_photo_area");
+        preview_area.find("img").prop("src",img_source);
+        preview_area.stop().fadeIn();
+    });
+    //ignore
+    $("#perview_photo_area").click(function (event) {
+       if (event.target === this ){
+           $(this).stop().fadeOut();
+       }
+    });
     //Change password
     $("#change_password_form").on("submit",function (event) {
         event.preventDefault();

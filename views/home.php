@@ -18,6 +18,10 @@
 
     </head>
     <body>
+        <div id="perview_photo_area">
+            <img src="" alt="" class="preview-img">
+            <button class="btn signup-btn">Change Photo</button>
+        </div>
         <nav id="nav">
 
             <span class="custom-bar-icon"><img src="../assets/images/menu-icon.png" class="menu-icon"></span>
@@ -28,7 +32,15 @@
 
                     <div class="profile-info">
                         <ul>
-                            <li><span class="profile-img-span"><img src="../uploads/<?php echo $_SESSION['img']?>" alt="Profile image" class="profile-img"></span></li>
+                            <li>
+                                <div class="change_photo">
+                                    <span id="change_photo_shadow">Preview</span>
+                                    <span class="profile-img-span">
+                                        <img src="../uploads/<?php echo $_SESSION['img']?>" alt="Profile image" class="profile-img">
+                                    </span>
+                                </div>
+
+                            </li>
                             <li><?php echo $_SESSION['user_name']?></li>
                         </ul>
                     </div>

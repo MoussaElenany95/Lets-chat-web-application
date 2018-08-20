@@ -126,6 +126,7 @@ label{
 .signup-btn:hover{
     cursor: pointer;
 }
+
 .form-heading{
     font-size: 2rem;
     letter-spacing: .3rem;
@@ -278,10 +279,37 @@ label{
     border-radius: 50%;
     transition: all .5s;
 }
-.profile-img-span:hover .profile-img{
-    transform: scale(1.3);
-}
 
+#change_photo_shadow{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    position: absolute;
+    color: var(--color-blue-dark);
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 10rem;
+    background-color: rgba(0,0,0,.3);
+    display: none;
+}
+#change_photo_shadow:hover{
+    cursor: pointer;
+}
+#perview_photo_area{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0,0,0,.2);
+    z-index: 1;
+    text-align: center;
+    display: none;
+}
+.preview-img{
+    margin-top: 5rem;
+    width: 80%;
+    height: 80%;
+}
 .chat-messages{
     width: 100%;
     height: 75vh;
