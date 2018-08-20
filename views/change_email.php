@@ -44,18 +44,22 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form action="" class="change-form">
+                    <form method="post" action="../route/route.php" class="change-form" id="change_email_form">
                         <div class="group">
                             <h1 class="form-heading">Change Email</h1>
                         </div>
-
+                        <div class="group">
+                            <h3 style="color: #d9534f">Hint : if you change your email you will be logged out to verify your email address make sure to type it correctly</h3>
+                        </div>
                         <div class="group">
                             <label for="name" id="name-label">Email</label>
-                            <input type="email" name="email" id="name" class="control" placeholder="Enter New Email" >
+                            <input type="text" name="email" id="email" class="control" value="<?php echo $_SESSION['email'];?>" placeholder="Enter New Email" >
+                            <span id="email_feedback" style="color:red;"></span>
                         </div>
+                        <input type="hidden" name="change_email_submit" id="change_Email_submit" class="btn signup-btn control" value="Save Changes">
 
                         <div class="group">
-                            <input type="submit" name="change_Email_submit" id="change_Email_submit" class="btn signup-btn control" value="Save Changes">
+                            <input type="submit" name="change_email_submit" id="change_Email_submit" class="btn signup-btn control" value="Save Changes">
                         </div>
                     </form>
                 </div>

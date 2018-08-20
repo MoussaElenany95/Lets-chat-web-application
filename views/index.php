@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+    session_start();
     if (isset($_SESSION['user_id'])){
         header("location:home.php");
     }
@@ -88,21 +89,29 @@
                         <?php endif;?>
                         <?php unset($_SESSION['login_error'])?>
 
-                            <div class="group">
-                                <h1 class="form-heading">Login</h1>
+                        <!--Update email alert-->
+                        <?php if (isset($_SESSION['email_success'])):?>
+                            <div class="alert success-alert">
+                                <?php echo $_SESSION['email_success'];?>
                             </div>
-                            <div class="group">
-                                <label for="email" id="email-label">Email</label>
-                                <input type="email" required name="login_email" id="login-email" class="control" placeholder="Enter Email ...">
-                            </div>
+                        <?php endif;?>
+                        <?php session_destroy() ?>
 
-                            <div class="group">
-                                <label for="password" id="password-label">Password</label>
-                                <input type="password"  required name="login_password" id="login-password" class="control" placeholder="Enter Password ...">
-                            </div>
-                            <div class="group">
-                                <input type="submit" name="login_submit" id="login_submit" class="btn signup-btn control" value="Login">
-                            </div>
+                        <div class="group">
+                            <h1 class="form-heading">Login</h1>
+                        </div>
+                        <div class="group">
+                            <label for="email" id="email-label">Email</label>
+                            <input type="email" required name="login_email" id="login-email" class="control" placeholder="Enter Email ...">
+                        </div>
+
+                        <div class="group">
+                            <label for="password" id="password-label">Password</label>
+                            <input type="password"  required name="login_password" id="login-password" class="control" placeholder="Enter Password ...">
+                        </div>
+                        <div class="group">
+                            <input type="submit" name="login_submit" id="login_submit" class="btn signup-btn control" value="Login">
+                        </div>
                         <div class="group">
                             <h6 id="signup-link" class="login-link">Don't have an account<br><b> Signup now</b> </h6>
                         </div>

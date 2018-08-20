@@ -11,6 +11,7 @@
         if ($login){
             $_SESSION['user_name'] = $login->name;
             $_SESSION['user_id']   = $login->id;
+            $_SESSION['email']     = $login->email;
             $_SESSION['img']       = $login->img;
             header("location:../views/home.php");
         }else{
@@ -98,4 +99,16 @@
         }
         header("location:../views/change_name.php");
         exit();
+    }
+    //Change email
+    if (isset($_POST['change_email_submit'])){
+        $update['type']    = "email";
+        $update['value']   = trim(htmlspecialchars(strtolower($_POST['email'])));
+        $id                = $_SESSION['user_id'];
+
+        if (UserController::updateUser($update,$id)){
+            $_SESSION['email_success'] = "Email updated successfully , check it to verify";
+            unset($_SESSION['user_id']); //to log out user ;
+            header("Location:../views/index.php");
+        }
     }

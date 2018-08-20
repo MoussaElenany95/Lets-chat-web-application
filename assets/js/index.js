@@ -84,7 +84,29 @@ $(function () {
         }
 
     })
+    //Change email form 
+    $("#change_email_form").on("submit",function (event) {
+        event.preventDefault();
 
+        var email = $("#email");
+        if (isValidEmail(email)){
+            $.ajax({
+                url:"../../route/route.php",
+                context:this,
+                type:"POST",
+                dataType:"JSON",
+                data:{"search_user":email.val().trim()},success:function (result) {
+                    if (!result.success){
+                        $("#email_feedback").empty();
+                        this.submit();
+                    }else {
+                        $("#email_feedback").text("Email already exist enter another");
+                    }
+                }
+
+            });
+        }
+    });
 
 });
 
@@ -115,4 +137,15 @@ function validatePasswordFields(password,confirm) {
 function isValidName(name) {
 
     return name.length >= 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name.trim());
+}
+//validate email
+function isValidEmail(email) {
+
+    if(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.val().trim())){
+        $("#email_feedback").empty();
+        return true;
+    }else{
+        $("#email_feedback").text("Please enter a valid email address");
+        return false;
+    }
 }
