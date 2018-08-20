@@ -1,7 +1,7 @@
 <?php
     session_start();
     if (isset($_SESSION['user_id'])){
-        header("location:home.php");
+        header("location:home");
     }
 ?>
 <!DOCTYPE html>
@@ -94,8 +94,9 @@
                             <div class="alert success-alert">
                                 <?php echo $_SESSION['email_success'];?>
                             </div>
+                            <?php session_destroy()?> <!-- User log out-->
                         <?php endif;?>
-                        <?php session_destroy() ?>
+
 
                         <div class="group">
                             <h1 class="form-heading">Login</h1>

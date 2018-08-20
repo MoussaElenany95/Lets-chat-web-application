@@ -1,6 +1,6 @@
-<?php session_start();
+<?php
+session_start();
 
-    session_start();
     if (!isset($_SESSION['user_id'])){
         header("location:index.php");
     }
@@ -38,9 +38,9 @@
                 <div class="profile-settings">
                     <h1 id="show-settings">Settings</h1>
                     <ul class="ul-settings">
-                        <li><a href="change_name.php">Change Name<span class="back-hover"></span></a></li>
-                        <li><a href="change_email.php">Change Email<span class="back-hover"></span></a></li>
-                        <li><a href="change_password.php">Change Password<span class="back-hover"></span></a></li>
+                        <li><a href="/change/name">Change Name<span class="back-hover"></span></a></li>
+                        <li><a href="/change/email">Change Email<span class="back-hover"></span></a></li>
+                        <li><a href="/change/password">Change Password<span class="back-hover"></span></a></li>
                         <li><a href="../route/route.php?logout=1">Logout</a></li>
                     </ul>
                 </div>

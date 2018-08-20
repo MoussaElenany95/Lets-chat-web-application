@@ -1,3 +1,9 @@
 RewriteEngine on
 DirectoryIndex views/index.php
 Options -Indexes
+Options +FollowSymLinks
+RewriteRule ^/$ views/index.php [NC,L]
+RewriteRule ^home$ views/home.php [NC,L]
+RewriteRule ^change/password$ views/change_password.php [NC,L]
+RewriteRule ^change/name$ views/change_name.php [NC,L]
+RewriteRule ^change/email$ views/change_email.php [NC,L]

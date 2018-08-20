@@ -13,10 +13,10 @@
             $_SESSION['user_id']   = $login->id;
             $_SESSION['email']     = $login->email;
             $_SESSION['img']       = $login->img;
-            header("location:../views/home.php");
+            header("location:../home.php");
         }else{
             $_SESSION['login_error'] = "Incorrect email or password";
-            header("location:../views/index.php");
+            header("location:../");
         }
 
 
@@ -31,7 +31,7 @@
 
             if (UserController::signup($data)){
                 $_SESSION['signup_success'] = "Account is  successfully created , check your email address ";
-                header("Location:../views/index.php");
+                header("Location:../");
             }
         }
 
@@ -50,7 +50,7 @@
     //logout
     if (isset($_GET['logout'])){
         session_destroy();
-        header("location:../views/index.php");
+        header("location:../");
     }
     //Check password
     if (isset($_POST['check_pass'])){
@@ -83,7 +83,7 @@
 
             $_SESSION['password_success'] = "Password has been successfully changed ";
         }
-        header("location:../views/change_password.php");
+        header("location:../password");
         exit();
     }
     //Change password
@@ -97,7 +97,7 @@
             $_SESSION['name_success'] = "Name has been successfully changed ";
             $_SESSION['user_name']        = $update['value'];
         }
-        header("location:../views/change_name.php");
+        header("location:../name");
         exit();
     }
     //Change email
@@ -109,6 +109,6 @@
         if (UserController::updateUser($update,$id)){
             $_SESSION['email_success'] = "Email updated successfully , check it to verify";
             unset($_SESSION['user_id']); //to log out user ;
-            header("Location:../views/index.php");
+            header("Location:../");
         }
     }
