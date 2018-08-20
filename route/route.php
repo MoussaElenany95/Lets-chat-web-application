@@ -13,7 +13,7 @@
             $_SESSION['user_id']   = $login->id;
             $_SESSION['email']     = $login->email;
             $_SESSION['img']       = $login->img;
-            header("location:../home.php");
+            header("location:../home");
         }else{
             $_SESSION['login_error'] = "Incorrect email or password";
             header("location:../");
@@ -83,7 +83,7 @@
 
             $_SESSION['password_success'] = "Password has been successfully changed ";
         }
-        header("location:../password");
+        header("location:../change/password");
         exit();
     }
     //Change password
@@ -97,7 +97,7 @@
             $_SESSION['name_success'] = "Name has been successfully changed ";
             $_SESSION['user_name']        = $update['value'];
         }
-        header("location:../name");
+        header("location:../change/name");
         exit();
     }
     //Change email
