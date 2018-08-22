@@ -22,7 +22,7 @@
 
     }
 
-    if(isset($_POST['signup_submit'])){
+    else if(isset($_POST['signup_submit'])){
 
             $data['name']     = trim(htmlspecialchars($_POST['full_name']));
             $data['email']    = trim(htmlspecialchars($_POST['email']));
@@ -36,7 +36,7 @@
         }
 
     //user already exist
-    if (isset($_POST['search_user'])){
+    else if (isset($_POST['search_user'])){
         $email    = trim(htmlspecialchars($_POST['search_user']));
         $response['success']  = false;
 
@@ -48,12 +48,12 @@
         exit();
     }
     //logout
-    if (isset($_GET['logout'])){
+    else if (isset($_GET['logout'])){
         session_destroy();
         header("location:../");
     }
     //Check password
-    if (isset($_POST['check_pass'])){
+    else if (isset($_POST['check_pass'])){
 
         $password = $_POST['check_pass'];
 
@@ -73,7 +73,7 @@
 
     //Update password
 
-    if (isset($_POST['change_password'])){
+    else if (isset($_POST['change_password'])){
 
         $update['type']     = "password";
         $update['value']    = password_hash($_POST['new_password'],PASSWORD_DEFAULT);
@@ -87,7 +87,7 @@
         exit();
     }
     //Change password
-    if (isset($_POST['change_name_submit'])){
+    else if (isset($_POST['change_name_submit'])){
 
         $update['type']     = "name";
         $update['value']    = ucwords(trim(htmlspecialchars($_POST['name'])));
@@ -101,7 +101,7 @@
         exit();
     }
     //Change email
-    if (isset($_POST['change_email_submit'])){
+    else if (isset($_POST['change_email_submit'])){
         $update['type']    = "email";
         $update['value']   = trim(htmlspecialchars(strtolower($_POST['email'])));
         $id                = $_SESSION['user_id'];
@@ -111,4 +111,9 @@
             unset($_SESSION['user_id']); //to log out user ;
             header("Location:../");
         }
+    }
+    //No Request sent
+    else{
+        session_destroy();
+        http_response_code(404);
     }

@@ -48,7 +48,7 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form method="post" action="../route/route.php" class="change-form" id="change_name_form">
+                    <form method="post" action="/update" class="change-form" id="change_name_form">
 
                         <?php if (isset($_SESSION['name_success'])):?>
                             <div class="alert success-alert">

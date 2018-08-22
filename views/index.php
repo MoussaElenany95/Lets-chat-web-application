@@ -36,7 +36,7 @@
             </div>
             <div class="signup-right">
                 <div class="form-area">
-                    <form id="signup-form" method="post"  action="../route/route.php" enctype="multipart/form-data" >
+                    <form id="signup-form" method="post"  action="/signup" enctype="multipart/form-data" >
                         <div class="group">
                             <h1 class="form-heading">CREATE NEW ACCOUNT</h1>
                         </div>
@@ -72,7 +72,7 @@
                         </div>
                     </form>
 
-                    <form id="login-form" method="post" action="../route/route.php" enctype="multipart/form-data">
+                    <form id="login-form" method="post" action="/login" enctype="multipart/form-data">
 
                         <!-- Sign up message-->
                         <?php if (isset($_SESSION['signup_success'])):?>

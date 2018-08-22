@@ -52,7 +52,7 @@
             </section>
             <section id="chat-right-area">
                 <div class="change-form-area">
-                    <form method="POST" action="../route/route.php" class="change-form" id="change_password_form">
+                    <form method="POST" action="/update" class="change-form" id="change_password_form">
 
                         <?php if (isset($_SESSION['password_success'])):?>
                             <div class="alert success-alert">
