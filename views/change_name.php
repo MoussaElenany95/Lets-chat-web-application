@@ -32,8 +32,16 @@ if (!isset($_SESSION['user_id'])) {
 
         <div class="profile-info">
             <ul>
-                <li><span class="profile-img-span"><img src="../uploads/<?php echo $_SESSION['img']; ?>"
-                                                        alt="Profile image" class="profile-img"></span></li>
+                <li>
+                    <div class="change_photo">
+                        <span id="change_photo_shadow">Preview</span>
+                        <span class="profile-img-span">
+                                        <img src="../uploads/<?php echo $_SESSION['img'] ?>" alt="Profile image"
+                                             class="profile-img">
+                        </span>
+                    </div>
+
+                </li>
                 <li><?php echo $_SESSION['user_name']; ?></li>
             </ul>
         </div>

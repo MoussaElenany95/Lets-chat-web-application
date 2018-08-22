@@ -38,7 +38,7 @@ if (!isset($_SESSION['user_id'])) {
                         <span class="profile-img-span">
                                         <img src="../uploads/<?php echo $_SESSION['img'] ?>" alt="Profile image"
                                              class="profile-img">
-                                    </span>
+                        </span>
                     </div>
 
                 </li>
