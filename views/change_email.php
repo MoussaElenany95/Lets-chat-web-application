@@ -41,7 +41,7 @@ session_start();
                         <li><a href="/change/name">Change Name<span class="back-hover"></span></a></li>
                         <li><a href="/change/email">Change Email<span class="back-hover"></span></a></li>
                         <li><a href="/change/password">Change Password<span class="back-hover"></span></a></li>
-                        <li><a href="../route/route.php?logout=1">Logout</a></li>
+                        <li><a href="/logout?logout=1">Logout</a></li>
                     </ul>
                 </div>
                 <div class="chats">
