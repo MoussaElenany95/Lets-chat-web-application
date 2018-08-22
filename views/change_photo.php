@@ -54,26 +54,25 @@ if (!isset($_SESSION['user_id'])) {
     </section>
     <section id="chat-right-area">
         <div class="change-form-area">
-            <form method="post" action="../update" class="change-form" id="change_email_form">
+            <form method="post" action="../update" class="change-form" id="change_photo_form"
+                  enctype="multipart/form-data">
+                <?php if (isset($_SESSION['image_success'])): ?>
+                    <div class="alert success-alert">
+                        <?php echo $_SESSION['image_success']; ?>
+                        <?php unset($_SESSION['image_success']) ?>
+                    </div>
+                <?php endif; ?>
                 <div class="group">
-                    <h1 class="form-heading">Change Email</h1>
+                    <h1 class="form-heading">Change Photo</h1>
                 </div>
-                <div class="group">
-                    <h3 style="color: #d9534f">Hint : if you change your email you will be logged out to verify your
-                        email address make sure to type it correctly</h3>
-                </div>
-                <div class="group">
-                    <label for="name" id="name-label">Email</label>
-                    <input type="text" name="email" id="email" class="control" value="<?php echo $_SESSION['email']; ?>"
-                           placeholder="Enter New Email">
-                    <span id="email_feedback" style="color:red;"></span>
-                </div>
-                <input type="hidden" name="change_email_submit" id="change_Email_submit" class="btn signup-btn control"
-                       value="Save Changes">
 
                 <div class="group">
-                    <input type="submit" name="change_email_submit" id="change_Email_submit"
-                           class="btn signup-btn control" value="Save Changes">
+                    <label for="image" id="name-label">Upload image</label>
+                    <input type="file" name="image" id="image" class="control">
+                    <span id="image_feedback" style="color:red;"></span>
+                </div>
+                <div class="group">
+                    <input type="submit" name="change_photo_submit" class="btn signup-btn" value="Save changes">
                 </div>
             </form>
         </div>

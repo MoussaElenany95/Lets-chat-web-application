@@ -128,6 +128,15 @@ $(function () {
         }
     });
 
+    //change photo
+    $("#change_photo_form").on("submit",function (event) {
+        var img = $("#image");
+
+        if (!validateImageField(img)){
+            event.preventDefault();
+        }
+    });
+
 });
 
 //validate password field
@@ -168,4 +177,22 @@ function isValidEmail(email) {
         $("#email_feedback").text("Please enter a valid email address");
         return false;
     }
+}
+//validate image
+function validateImageField(image) {
+
+    var imageVal = image.val();
+
+    var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1);
+
+    if (fileType !== "jpeg" && fileType!== "jpg" && fileType !== "png"){
+        $("#image_feedback").text("Enter a valid image ");
+        return false;
+    }else{
+        $("#image_feedback").empty();
+        return true;
+    }
+
+
+
 }

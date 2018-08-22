@@ -307,8 +307,10 @@ label{
 }
 .preview-img{
     margin-top: 5rem;
-    width: 80%;
-    height: 80%;
+    width: auto;
+    height: auto;
+    max-width: 80%;
+    max-height: 80%;
 }
 .chat-messages{
     width: 100%;
