@@ -166,6 +166,9 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="text-area-controller">
                     <textarea name="send_message" id="send_message" class="message-textarea" placeholder="Enter message here"></textarea>
                 </div>
+                <div class="send-mssage">
+                        <img src="../assets/images/send_message.png" class="send-mssage-icon">
+                </div>
                 <div class="chat-file-upload">
                     <label for="chat-file-upload" class="file-upload-label">
                         <img class="file-upload-icon" src="../assets/images/img-upload.png">

@@ -442,9 +442,11 @@ label{
 }
 .text-area-controller{
     width: 50%;
+    margin-right: 1rem;
 }
 .message-textarea{
     width: 100%;
+    min-width: 250px;
     padding: .5rem;
     height: 4rem;
     resize: none;
@@ -457,6 +459,16 @@ label{
     border:1px solid var(--color-blue-light);
     /*border-radius: 3px;*/
 }
+.send-mssage{
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+
+}
+.send-mssage-icon{
+    width: 4rem;
+    height: 4rem;
+}
 .chat-file-upload{
     width: 50%;
     padding-top: .5rem;
@@ -464,8 +476,8 @@ label{
 }
 .file-upload-icon{
     height: 3rem;
-    margin-left:3rem ;
     width: 3rem;
+    cursor: pointer;
 }
 #chat-file-upload{
     display: none;

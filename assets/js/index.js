@@ -138,28 +138,42 @@ $(function () {
     });
     //Send message
     $(".chat-form-container").on("keypress", function(event) {
-        var message = $("#send_message");
-        if (event.keyCode === 13 && message.length > 0){
-           $.ajax({
-                   type: "POST",
-                   url:"/send/message",
-                   dataType:"JSON",
-                   data:{ send_message:message.val().trim()},success:function (result) {
-                                if (result.status === "success"){
-                                    message.val("");
-                                }else{
-                                    console.log("cannot sent message")
-                                }
-                       }
 
-                  }
-            );
-
+        if (event.keyCode === 13 ){
+            ajaxSendMessage(event);
         }
+    });
+    $(".send-mssage").on("click",function (event) {
+       ajaxSendMessage(event);
     });
 
 });
+//Ajax send message
+function ajaxSendMessage(event) {
 
+    var message = $("#send_message");
+
+    if (message.val().trim().length > 0){
+        $.ajax({
+                type: "POST",
+                url:"/send/message",
+                dataType:"JSON",
+                data:{ send_message:message.val().trim()},success:function (result) {
+
+                if (result.status === "success"){
+                    message.val("");
+                }else{
+                    console.log("cannot sent message")
+                }
+            }}
+        );
+
+    }else {
+        event.preventDefault();
+    }
+
+
+}
 //validate password field
 function validatePasswordFields(password,confirm) {
     if (password.val().length < 6 ){
