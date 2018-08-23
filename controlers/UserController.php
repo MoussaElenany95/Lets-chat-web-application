@@ -11,7 +11,9 @@ class UserController
         if ($login){
 
             if ( password_verify($password,$login->password) ){
-
+                $update['type']  = "status";
+                $update['value'] = 1;
+                self::updateUser($update,$login->id);
                 return $login;
             }
 

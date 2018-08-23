@@ -49,6 +49,10 @@
     }
     //logout
     else if (isset($_GET['logout'])){
+        $update['type']  = "status";
+        $update['value'] = 0;
+        $id              = $_SESSION['user_id'];
+        UserController::updateUser($update,$id);
         session_destroy();
         header("location:../");
     }
