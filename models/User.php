@@ -1,5 +1,4 @@
 <?php
-include "DataBase.php";
 
 class User extends DataBase
 {

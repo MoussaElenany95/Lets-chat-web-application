@@ -103,7 +103,7 @@ $(function () {
             $("#name_error").empty();
         }
 
-    })
+    });
     //Change email form 
     $("#change_email_form").on("submit",function (event) {
         event.preventDefault();
@@ -134,6 +134,27 @@ $(function () {
 
         if (!validateImageField(img)){
             event.preventDefault();
+        }
+    });
+    //Send message
+    $(".chat-form-container").on("keypress", function(event) {
+        var message = $("#send_message");
+        if (event.keyCode === 13 && message.length > 0){
+           $.ajax({
+                   type: "POST",
+                   url:"/send/message",
+                   dataType:"JSON",
+                   data:{ send_message:message.val().trim()},success:function (result) {
+                                if (result.status === "success"){
+                                    message.val("");
+                                }else{
+                                    console.log("cannot sent message")
+                                }
+                       }
+
+                  }
+            );
+
         }
     });
 

@@ -1,5 +1,7 @@
 <?php
-include "../models/User.php";
+require  "../models/DataBase.php";
+require "../models/User.php";
+require "../models/Chat.php";
 class UserController
 {
     //login
@@ -43,7 +45,7 @@ class UserController
         return $search;
     }
     //Check user password
-    public static function searchForUserById($id){
+    public static function serchForUserById($id){
         $user  = new User();
         $check = $user->findById($id);
 
@@ -57,7 +59,19 @@ class UserController
 
         return $update;
     }
+    //Send message
+    public static function sendMessage($message,$message_type,$user_id){
+        $data['message']      = $message;
+        $data['message_type'] = $message_type;
+        $data['user_id']      = $user_id;
 
+        $chat = new Chat();
+
+        if ($chat->insert($data)){
+            return true;
+        }
+      return false;
+    }
 
 
 }
