@@ -43,7 +43,7 @@ $(function () {
             && isValidEmail(email)
         ){
             $.ajax({
-                url:"../../route/route.php",
+                url:"/find",
                 context:this,
                 type:"POST",
                 dataType:"JSON",

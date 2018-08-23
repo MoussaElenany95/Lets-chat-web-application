@@ -62,7 +62,7 @@ if (!isset($_SESSION['user_id'])) {
     </section>
     <section id="chat-right-area">
         <div class="change-form-area">
-            <form method="post" action="../update" class="change-form" id="change_email_form">
+            <form method="post" action="/update" class="change-form" id="change_email_form">
                 <div class="group">
                     <h1 class="form-heading">Change Email</h1>
                 </div>
