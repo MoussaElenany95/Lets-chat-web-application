@@ -12,4 +12,10 @@
             echo json_encode(['status'=>"success"]);
         }
 
+    }else if (isset($_FILES['chat-upload-file'])){
+
+        echo json_encode(["status"=>"success"]);
+
+    }else{
+        http_response_code(404);
     }

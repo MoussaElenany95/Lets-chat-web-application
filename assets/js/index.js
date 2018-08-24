@@ -146,6 +146,25 @@ $(function () {
     $(".send-mssage").on("click",function (event) {
        ajaxSendMessage(event);
     });
+    //chat upload file
+    $("#chat-file-upload").on("change",function () {
+       var file_name = $(this).val().trim();
+       
+       if (file_name !== ""){
+           $.ajax({
+               type: "POST",
+               url: "/send/message",
+               data: new FormData($(".chat-form-container")[0]),
+               contentType:false,
+               processData:false,
+               encode:"multipart/form-data",
+               dataType:"JSON",
+               success:function (result) {
+                 console.log(result);
+               }
+           });
+       }
+    });
 
 });
 //Ajax send message

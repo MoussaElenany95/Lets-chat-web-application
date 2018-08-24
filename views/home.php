@@ -161,7 +161,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </div>
         <div class="chat-form-area">
-            <form class="chat-form-container">
+            <form class="chat-form-container" >
 
                 <div class="text-area-controller">
                     <textarea name="send_message" id="send_message" class="message-textarea" placeholder="Enter message here"></textarea>
