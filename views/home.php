@@ -163,11 +163,11 @@ if (!isset($_SESSION['user_id'])) {
         <div class="chat-form-area">
             <form class="chat-form-container" >
 
-                <div class="text-area-controller">
+                <div class="send-message-container">
                     <textarea name="send_message" id="send_message" class="message-textarea" placeholder="Enter message here"></textarea>
-                </div>
-                <div class="send-mssage">
+                    <div class="send-mssage">
                         <img src="../assets/images/send_message.png" class="send-mssage-icon">
+                    </div>
                 </div>
                 <div class="chat-file-upload">
                     <label for="chat-file-upload" class="file-upload-label">
@@ -177,28 +177,6 @@ if (!isset($_SESSION['user_id'])) {
                     <input type="file" name="chat-upload-file" id="chat-file-upload">
                 </div>
             </form>
-            <div class="emojes">
-                <img src="../assets/emoji/emoji1.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji2.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji3.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji4.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji5.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji6.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji7.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji8.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji9.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji10.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji11.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji12.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji13.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji14.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji15.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji16.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji17.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji18.png" alt="" class="emoje-img">
-                <img src="../assets/emoji/emoji19.png" alt="" class="emoje-img">
-
-            </div>
         </div>
 
     </section>
