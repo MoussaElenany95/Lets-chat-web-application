@@ -104,7 +104,7 @@
         }
     }else if (isset($_POST['change_photo_submit'])){
 
-        $image      = $_FILES['image'];
+        $image      = $_FILES['update_image'];
         $id         = $_SESSION['user_id'];
         $old_img    = "../uploads/".$_SESSION['img'];
 

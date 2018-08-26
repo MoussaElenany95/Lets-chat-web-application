@@ -122,6 +122,7 @@ label{
     width: 100%;
     background: linear-gradient(to right ,var(--color-blue-light),var(--color-blue-dark));
     box-shadow: 0 .8rem .6rem -.6rem rgba(0,0,0,1) ;
+    outline: none;
 }
 .signup-btn:hover{
     cursor: pointer;
@@ -463,8 +464,10 @@ label{
     height: 3.5rem;
     cursor: pointer;
     margin-left: 1rem;
+    outline: none;
 }
 .send-mssage-icon{
+    outline: none;
     width: 3.5rem;
     height: 3.5rem;
 }

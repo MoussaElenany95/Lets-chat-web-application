@@ -62,21 +62,20 @@ if (!isset($_SESSION['user_id'])) {
     </section>
     <section id="chat-right-area">
         <div class="change-form-area">
-            <form method="post" action="../update" class="change-form" id="change_photo_form"
-                  enctype="multipart/form-data">
-                <?php if (isset($_SESSION['image_success'])): ?>
-                    <div class="alert success-alert">
-                        <?php echo $_SESSION['image_success']; ?>
-                        <?php unset($_SESSION['image_success']) ?>
-                    </div>
-                <?php endif; ?>
+            <form method="post" action="/update" class="change-form" id="change_photo_form" enctype="multipart/form-data">
+                <div class="alert success-alert">
+                    <!--Alert message-->
+                </div>
+                <div class="alert danger-alert">
+                    <!-- Danger alert-->
+                </div>
                 <div class="group">
                     <h1 class="form-heading">Change Photo</h1>
                 </div>
 
                 <div class="group">
                     <label for="image" id="name-label">Upload image</label>
-                    <input type="file" name="image" id="image" class="control">
+                    <input type="file" name="update_image" id="update_image" class="control">
                     <span id="image_feedback" style="color:red;"></span>
                 </div>
                 <div class="group">

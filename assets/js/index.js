@@ -130,8 +130,8 @@ $(function () {
 
     //change photo
     $("#change_photo_form").on("submit",function (event) {
-        var img = $("#image");
 
+        var img = $("#update_image");
         if (!validateImageField(img)){
             event.preventDefault();
         }
