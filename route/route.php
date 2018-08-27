@@ -102,31 +102,6 @@
             unset($_SESSION['user_id']); //to log out user ;
             header("Location:../");
         }
-    }else if (isset($_POST['change_photo_submit'])){
-
-        $image      = $_FILES['update_image'];
-        $id         = $_SESSION['user_id'];
-        $old_img    = "../uploads/".$_SESSION['img'];
-
-        if (file_exists($old_img)){
-            unlink($old_img);
-        }
-
-        $img      = microtime(date("H")).$image['name'];
-
-        if (move_uploaded_file($image['tmp_name'],'../uploads/'.$img)){
-            $update['type']  = "img";
-            $update['value'] = $img;
-            UserController::updateUser($update,$id);
-
-            $_SESSION['img'] = $img;
-            $_SESSION['image_success'] = "Photo updated successfully";
-        }else{
-
-            $_SESSION['image_success'] = "Unknown Error while uploading";
-        }
-        header("location:/change/photo");
-        exit();
     }
     //No Request sent
     else{
