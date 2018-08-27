@@ -135,6 +135,9 @@ $(function () {
         var img = $("#update_image");
         if (validateImageField(img)){
             $(".upload-progress").show();
+            $("#update_image").hide(); //hide input to avoid repeating
+            $("#change_photo_submit").attr("disabled",true);
+            $("#change_photo_submit").val("Please wait ....");
             $.ajax({
                 xhr:function(){
                   var xhr = new window.XMLHttpRequest();
@@ -146,6 +149,9 @@ $(function () {
                           $(".upload-progress").val(percent);
                           if (percent === 100){
                               $("#percent").text(percent+" % Uploaded completed");
+                              $("#update_image").show(); //show input
+                              $("#change_photo_submit").attr("disabled",false);
+                              $("#change_photo_submit").val("Save changes");
                               img.val('');
 
                           }else {

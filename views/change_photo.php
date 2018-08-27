@@ -77,7 +77,7 @@ if (!isset($_SESSION['user_id'])) {
                     <h3 id="percent"></h3>
                 </div>
                 <div class="group">
-                    <input type="submit" name="change_photo_submit" class="btn signup-btn" value="Save changes">
+                    <input type="submit"  id="change_photo_submit" name="change_photo_submit" class="btn signup-btn" value="Save changes">
                 </div>
             </form>
         </div>
