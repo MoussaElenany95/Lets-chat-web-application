@@ -224,7 +224,6 @@ label{
 .profile-settings h1{
     color: var(--color-silver2);
     font-size: 1.5rem;
-    line-height: 10vh;
 
 }
 .profile-settings h1:hover{
@@ -504,8 +503,17 @@ label{
 .success-alert{
     background-color: var(--color-blue-light);
 }
+
 .danger-alert{
     background-color: #d9534f;
+}
+.upload-progress{
+    height: 2rem;
+    width: 80%;
+    display: none;
+}
+#percent{
+    color: var(--color-blue-dark);
 }
 ::-webkit-input-placeholder{
     font-size: 1.5rem;

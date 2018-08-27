@@ -23,7 +23,10 @@
             UserController::updateUser($update,$id);
 
             $_SESSION['img'] = $img;
-
+            //return img name
+            echo json_encode(["img"=>"../uploads/$img"]);
+        }else{
+            echo json_encode(["img"=>null]);
         }
         exit();
 

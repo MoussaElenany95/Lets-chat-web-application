@@ -131,9 +131,48 @@ $(function () {
     //change photo
     $("#change_photo_form").on("submit",function (event) {
 
+        event.preventDefault();
         var img = $("#update_image");
-        if (!validateImageField(img)){
-            event.preventDefault();
+        if (validateImageField(img)){
+            $(".upload-progress").show();
+            $.ajax({
+                xhr:function(){
+                  var xhr = new window.XMLHttpRequest();
+                  
+                  xhr.upload.addEventListener("progress",function (evt) {
+
+                      if (evt.lengthComputable){
+                          var percent = Math.round(evt.loaded/evt.total)*100;
+                          $(".upload-progress").val(percent);
+                          if (percent === 100){
+                              $("#percent").text(percent+" % Uploaded completed");
+                              img.val('');
+
+                          }else {
+                              $("#percent").text(percent+" % Uploaded  please wait ....");
+                              $("#percent").fadeToggle();
+                          }
+
+                      }
+                  });
+                  
+                  return xhr
+                },
+                type: "POST",
+                url: "/update/image",
+                data: new FormData($("#change_photo_form")[0]),
+                contentType:false,
+                processData:false,
+                encode:"multipart/form-data",
+                dataType:"JSON",
+                success:function (result) {
+                    if (result.img){
+                        $(".profile-img").attr("src",result.img);
+                    }
+                   console.log(result);
+                }
+
+            });
         }
     });
     //Send message

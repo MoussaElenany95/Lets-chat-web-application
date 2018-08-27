@@ -63,12 +63,6 @@ if (!isset($_SESSION['user_id'])) {
     <section id="chat-right-area">
         <div class="change-form-area">
             <form method="post" action="/update" class="change-form" id="change_photo_form" enctype="multipart/form-data">
-                <div class="alert success-alert">
-                    <!--Alert message-->
-                </div>
-                <div class="alert danger-alert">
-                    <!-- Danger alert-->
-                </div>
                 <div class="group">
                     <h1 class="form-heading">Change Photo</h1>
                 </div>
@@ -77,6 +71,10 @@ if (!isset($_SESSION['user_id'])) {
                     <label for="image" id="name-label">Upload image</label>
                     <input type="file" name="update_image" id="update_image" class="control">
                     <span id="image_feedback" style="color:red;"></span>
+                </div>
+                <div class="group">
+                    <progress value="0" max="100" class="upload-progress"></progress>
+                    <h3 id="percent"></h3>
                 </div>
                 <div class="group">
                     <input type="submit" name="change_photo_submit" class="btn signup-btn" value="Save changes">
