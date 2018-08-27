@@ -145,8 +145,9 @@ $(function () {
                   xhr.upload.addEventListener("progress",function (evt) {
 
                       if (evt.lengthComputable){
-                          var percent = Math.round(evt.loaded/evt.total)*100;
+                          var percent = Math.round((evt.loaded/evt.total)*100 );
                           $(".upload-progress").val(percent);
+                          console.log(percent);
                           if (percent === 100){
                               $("#percent").text(percent+" % Uploaded completed");
                               $("#update_image").show(); //show input
@@ -156,7 +157,6 @@ $(function () {
 
                           }else {
                               $("#percent").text(percent+" % Uploaded  please wait ....");
-                              $("#percent").fadeToggle();
                           }
 
                       }
