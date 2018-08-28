@@ -509,7 +509,7 @@ label{
 }
 .upload-progress{
     height: 2rem;
-    width: 80%;
+    width: 100%;
     display: none;
 }
 #percent{

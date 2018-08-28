@@ -67,7 +67,7 @@ function validateImageField(image) {
 
     var imageVal = image.val();
 
-    var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1);
+    var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1).toLowerCase();
 
     if (fileType !== "jpeg" && fileType!== "jpg" && fileType !== "png"){
         $("#image_feedback").text("Enter a valid image ");
