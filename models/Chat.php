@@ -11,5 +11,12 @@
                                         VALUES  (?,?,?)");
             return $sql->execute(array($message,$message_type,$user_id));
         }
+        //Get all
+        public function show(){
+            $sql = $this->conn->prepare("SELECT * FROM messages INNER JOIN users ON  messages.user_id = users.id ORDER BY messages.msg_id ASC");
+            $sql->execute();
+            return $sql->fetchAll(PDO::FETCH_OBJ);
 
+
+        }
     }

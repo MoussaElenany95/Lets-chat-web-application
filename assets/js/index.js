@@ -149,7 +149,7 @@ $(function () {
                           $(".upload-progress").val(percent);
                           console.log(percent);
                           if (percent === 100){
-                              $("#percent").text(percent+" % Uploaded completed");
+                              $("#percent").text(percent+" % Uploading  completed");
                               $("#update_image").show(); //show input
                               $("#change_photo_submit").attr("disabled",false);
                               $("#change_photo_submit").val("Save changes");
@@ -198,19 +198,31 @@ $(function () {
        if (file_name !== ""){
            $.ajax({
                type: "POST",
-               url: "/send/message",
+               url: "/send/file",
                data: new FormData($(".chat-form-container")[0]),
                contentType:false,
                processData:false,
                encode:"multipart/form-data",
                dataType:"JSON",
                success:function (result) {
-                 console.log(result);
+                 if (result.error){
+
+                         $(".send-file-error").addClass("show-error");
+                         $(".send-file-error-text").text(result.error);
+
+                         setTimeout(function () {
+                             $(".send-file-error").removeClass("show-error");
+                         },3000);
+
+                 }else{
+
+                 }
                }
            });
        }
     });
-
+    //get all messages
+    getAllMessages();
 });
 //Ajax send message
 function ajaxSendMessage(event) {
@@ -294,4 +306,15 @@ function validateImageField(image) {
 
 
 
+}
+//Get all messages
+function getAllMessages() {
+    $.ajax({
+        type:"GET",
+        url:"/get/messages",
+        data:{messages:true},
+        success:function (result) {
+            $(".chat-messages").html(result);
+        }
+    });
 }

@@ -159,10 +159,16 @@ if (!isset($_SESSION['user_id'])) {
 
                 </div>
             </div>
-        </div>
-        <div class="chat-form-area">
-            <form class="chat-form-container" >
 
+        </div>
+
+        <div class="chat-form-area">
+
+            <form class="chat-form-container" enctype="multipart/form-data">
+                <div class="send-file-error">
+                    <span class="cross-icon">&#x2715</span>
+                    <span class="send-file-error-text"></span>
+                </div>
                 <div class="send-message-container">
                     <textarea name="send_message" id="send_message" class="message-textarea" placeholder="Enter message here"></textarea>
                     <div class="send-mssage">

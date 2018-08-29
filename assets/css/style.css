@@ -435,13 +435,13 @@ label{
 }
 .chat-form-container{
     width: 80%;
-    padding: .5rem   ;
 }
 .send-message-container{
     width: 100%;
     display: flex;
     display: -webkit-flex;
-    margin-right: .5rem;
+    margin-left: .5rem;
+
 }
 .message-textarea{
     width: 90%;
@@ -452,6 +452,7 @@ label{
     border: 1px solid var(--color-silver);
     border-radius: 3px;
     transition: all 1s;
+    overflow: hidden;
 }
 .message-textarea:focus{
     outline: none;
@@ -471,6 +472,7 @@ label{
     height: 3.5rem;
 }
 .chat-file-upload{
+    margin-left: .5rem;
     width: 50%;
     text-align: left;
     margin-top:.5rem;
@@ -482,6 +484,36 @@ label{
 }
 #chat-file-upload{
     display: none;
+}
+.send-file-error{
+    width: 0;
+    height: 5rem;
+    line-height: 5rem;
+    position: fixed;
+    background-color: #d9534f;
+    bottom: 15vh;
+    text-align: left;
+    padding-left: 5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    opacity: 0;
+    color: white;
+    text-transform: uppercase;
+    transition: all 1s;
+
+}
+.show-error{
+    width: 100%;
+    opacity: 1;
+}
+.cross-icon{
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: .5rem;
+}
+.chat-file-img{
+    width: 50rem;
+    height: auto;
 }
 .change-form-area{
     padding: 2rem;
@@ -564,7 +596,7 @@ label{
     .right-message{
         max-width: 100%;
     }
-    .text-area-controller{
+    .message-textarea{
         width: 90%;
     }
     .file-upload-icon{

@@ -72,7 +72,12 @@ class UserController
         }
       return false;
     }
+    //Get all messages
+    public static function getAllMessages(){
+        $chat = new Chat();
 
+        return $chat->show();
+    }
 
 }
 
