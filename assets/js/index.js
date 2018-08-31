@@ -234,28 +234,28 @@ $(function () {
 
     //get all messages
     getAllMessages();
-    //auto scroll to the bottom
 
+    //auto scroll to the bottom
     setTimeout(function () {
+
         let scroll_length = $(".chat-messages")[0].scrollHeight;
         $(".chat-messages").animate({scrollTop:scroll_length},1000);
-        // var x = $(".chat-messages")[0].clientHeight;
-        // console.log(scroll_length);
-        // console.log($(".chat-messages").scrollTop()+x);
+
     },1000);
 
-
+    //get all messages after 3 seconds
     setInterval(function () {
         let scroll_height = $(".chat-messages")[0].scrollHeight;
         let user_scroll   = $(".chat-messages").scrollTop();
         let scroll_size   = $(".chat-messages")[0].clientHeight;
+
         getAllMessages();
+
+        //to scroll to new message
         if (scroll_height === user_scroll+scroll_size  ){
             $(".chat-messages").animate({scrollTop:scroll_height},1000);
-        }else{
-            console.log("Don't scroll");
-
         }
+
     },3000);
 });
 //Ajax send message
