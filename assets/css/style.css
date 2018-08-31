@@ -324,23 +324,23 @@ label{
 
 }
 .sender-img-block{
-    height: 8rem;
-    width: 8rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
     position: relative;
 }
 
 .sender-img{
-    height: 8rem;
-    width: 8rem;
+    height: 5rem;
+    width: 5rem;
     border-radius: 50%;
 }
 .online-icon{
     position: absolute;
     background-color: var(--color-blue-light);
     display: block;
-    top: .5rem;
-    right: 1rem;
+    top: 0;
+    right: .5rem;
     border-radius: 50%;
     border: 1px solid var(--color-white);
     width: 1rem;
@@ -350,8 +350,8 @@ label{
     position: absolute;
     background-color: red;
     display: block;
-    top: .5rem;
-    right: 1rem;
+    top: 0;
+    right: .5rem;
     border-radius: 50%;
     border: 1px solid var(--color-white);
     width: 1rem;
@@ -434,24 +434,23 @@ label{
     border-top: 2px solid var(--color-silver);
 }
 .chat-form-container{
-    width: 80%;
+    width: 100%;
 }
 .send-message-container{
     width: 100%;
     display: flex;
     display: -webkit-flex;
-    margin-left: .5rem;
+    margin: .5rem;
 
 }
 .message-textarea{
-    width: 90%;
-    min-width: 300px;
+    width: 80%;
+    min-width: 230px;
     padding: .5rem;
     height: 3.5rem;
     resize: none;
     border: 1px solid var(--color-silver);
     border-radius: 3px;
-    transition: all 1s;
     overflow: hidden;
 }
 .message-textarea:focus{
@@ -512,7 +511,7 @@ label{
     padding: .5rem;
 }
 .chat-file-img{
-    width: 50rem;
+    width: 30rem;
     height: auto;
 }
 .change-form-area{
@@ -597,7 +596,7 @@ label{
         max-width: 100%;
     }
     .message-textarea{
-        width: 90%;
+        width: 87%;
     }
     .file-upload-icon{
         margin: 0;

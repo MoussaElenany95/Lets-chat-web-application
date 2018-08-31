@@ -1,6 +1,12 @@
 $(function () {
+    //get country time zone
+    var timezone_offset_minutes = new Date().getTimezoneOffset();
+    timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
+    document.cookie = "timezone="+timezone_offset_minutes;
+
     //On resize
     var width = $(window).width();
+    var height  = $(document).height();
     $(window).on("resize",function () {
        var resize = $(this).width();
         if (resize <= 800 && resize != width ){
@@ -216,13 +222,41 @@ $(function () {
 
                  }else{
 
+                     getAllMessages();
+                     $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+
                  }
                }
            });
        }
     });
+    
+
     //get all messages
     getAllMessages();
+    //auto scroll to the bottom
+
+    setTimeout(function () {
+        let scroll_length = $(".chat-messages")[0].scrollHeight;
+        $(".chat-messages").animate({scrollTop:scroll_length},1000);
+        // var x = $(".chat-messages")[0].clientHeight;
+        // console.log(scroll_length);
+        // console.log($(".chat-messages").scrollTop()+x);
+    },1000);
+
+
+    setInterval(function () {
+        let scroll_height = $(".chat-messages")[0].scrollHeight;
+        let user_scroll   = $(".chat-messages").scrollTop();
+        let scroll_size   = $(".chat-messages")[0].clientHeight;
+        getAllMessages();
+        if (scroll_height === user_scroll+scroll_size  ){
+            $(".chat-messages").animate({scrollTop:scroll_height},1000);
+        }else{
+            console.log("Don't scroll");
+
+        }
+    },3000);
 });
 //Ajax send message
 function ajaxSendMessage(event) {
@@ -238,6 +272,9 @@ function ajaxSendMessage(event) {
 
                 if (result.status === "success"){
                     message.val("");
+                    getAllMessages();
+                    $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+
                 }else{
                     console.log("cannot sent message")
                 }
