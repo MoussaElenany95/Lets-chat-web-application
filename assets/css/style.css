@@ -609,11 +609,20 @@ label{
         width: 100%;
 
     }
+    .chat-messages{
+        padding: .5rem;
+    }
     .chat-file-img{
         width: 20rem;
     }
     .left-message{
         max-width: 100%;
+    }
+    .sender-name{
+        font-size: 1rem;
+    }
+    .message-time{
+        font-size: 1rem;
     }
     .right-message{
         max-width: 100%;
