@@ -46,9 +46,7 @@
                         <span class=\"message-time\">$msg_time</span>
                     </div>
                     <div class=\"left-message-content\">
-                        <p>
-                            $message->message
-                        </p>
+                        $msg_content
                     </div>
 
                 </div>
