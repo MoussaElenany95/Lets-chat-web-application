@@ -191,46 +191,28 @@ $(function () {
     $(".chat-form-container").on("keypress", function(event) {
 
         if (event.keyCode === 13 ){
-            ajaxSendMessage(event);
+            sendMessage(event);
         }
     });
+    //send message
     $(".send-mssage").on("click",function (event) {
-       ajaxSendMessage(event);
+            sendMessage(event);
     });
     //chat upload file
     $("#chat-file-upload").on("change",function () {
-       var file_name = $(this).val().trim();
-       
-       if (file_name !== ""){
-           $.ajax({
-               type: "POST",
-               url: "/send/file",
-               data: new FormData($(".chat-form-container")[0]),
-               contentType:false,
-               processData:false,
-               encode:"multipart/form-data",
-               dataType:"JSON",
-               success:function (result) {
-                 if (result.error){
-
-                         $(".send-file-error").addClass("show-error");
-                         $(".send-file-error-text").text(result.error);
-
-                         setTimeout(function () {
-                             $(".send-file-error").removeClass("show-error");
-                         },3000);
-
-                 }else{
-
-                     getAllMessages();
-                     $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
-
-                 }
-               }
-           });
-       }
+            ajaxSendFile($(this));
     });
-    
+
+    //Retry send message
+    $(document).on("click",".retry-send-message",function () {
+       let waiting             = $(this).parent();
+       let right_message       = waiting.parent();
+       let right_message_area  = right_message.parent();
+       let message             = right_message_area.find("p").text().trim();
+       right_message_area.parent().parent().remove();
+
+       ajaxSendMessage(message)
+    });
 
     //get all messages
     getAllMessages();
@@ -258,35 +240,100 @@ $(function () {
 
     },3000);
 });
-//Ajax send message
-function ajaxSendMessage(event) {
 
-    var message = $("#send_message");
+function ajaxSendFile(elemet) {
+    //Get file name
+    var file_name =elemet.val().trim();
 
-    if (message.val().trim().length > 0){
+    if (file_name !== ""){
         $.ajax({
-                type: "POST",
-                url:"/send/message",
-                dataType:"JSON",
-                data:{ send_message:message.val().trim()},success:function (result) {
+            type: "POST",
+            url: "/send/file",
+            data: new FormData($(".chat-form-container")[0]),
+            contentType:false,
+            processData:false,
+            encode:"multipart/form-data",
+            dataType:"JSON",
+            success:function (result) {
+                //get error from server
+                if (result.error){
 
-                if (result.status === "success"){
-                    message.val("");
+                    $(".send-file-error").addClass("show-error");
+                    $(".send-file-error-text").text(result.error);
+
+                    setTimeout(function () {
+                        $(".send-file-error").removeClass("show-error");
+                    },3000);
+
+                }else{
+
                     getAllMessages();
                     $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
 
-                }else{
-                    console.log("cannot sent message")
                 }
-            }}
+            }
+        });
+    }
+}
+//Ajax send message
+function sendMessage(event) {
+
+    //Get message content
+    var message = $("#send_message").val().trim();
+
+    // //clear message field
+    $(".chat-form-container").trigger("reset");
+    event.preventDefault();
+
+    ajaxSendMessage(message);
+}
+
+//Send message
+function ajaxSendMessage(message) {
+
+    let waiting_message = $(".new-waiting-message").append('' +
+        '<div class="right-message-area">' +
+        '<div class="right-message">' +
+        '<div class="right-sender-name-date"> ' +
+        '<span class="message-time"></span> ' +
+        '</div> ' +
+        '<div class="right-message-content">' +
+        '<p>'+message+'</p> ' +
+        '<span class="waiting">sending...<img class="loading" src="/assets/images/loading.gif"></span>'+
+        '</div>' +
+        ' </div> ' +
+        '</div>');
+
+    $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+
+
+
+    if (message.length > 0){
+        $.ajax({
+            type: "POST",
+            url:"/send/message",
+            dataType:"JSON",
+            data:{ send_message:message},timeout:3000,success:function (result) {
+
+                if (result.status === "success"){
+                    $(".new-waiting-message > div").last().remove();
+
+                    getAllMessages();
+
+                }
+            }
+            ,error:function () {
+                let error_msg = waiting_message.find(".waiting");
+                error_msg.html("<div><a onclick='alert('sssssss')' class='retry-send-message'>Failed to send , click to retry</a>");
+            }},
+
         );
 
-    }else {
-        event.preventDefault();
     }
 
 
 }
+
 //validate password field
 function validatePasswordFields(password,confirm) {
     if (password.val().length < 6 ){
@@ -351,7 +398,7 @@ function getAllMessages() {
         url:"/get/messages",
         data:{messages:true},
         success:function (result) {
-            $(".chat-messages").html(result);
+            $(".chat-old-messages").html(result);
         }
     });
 }

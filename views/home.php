@@ -60,7 +60,10 @@ if (!isset($_SESSION['user_id'])) {
     </section>
     <section id="chat-right-area">
         <div class="chat-messages">
+            <div class="chat-old-messages">
 
+            </div>
+            <div class="new-waiting-message"></div>
         </div>
 
         <div class="chat-form-area">
