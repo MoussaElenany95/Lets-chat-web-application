@@ -436,6 +436,10 @@ label{
     width: 1rem;
     margin-left: .5rem;
 }
+.loading-file{
+    height: 2rem;
+    width: 2rem;
+}
 .hidden-message{
     display: none;
 }
@@ -487,7 +491,7 @@ label{
 }
 .chat-file-upload{
     margin-left: .5rem;
-    width: 50%;
+    width: 100%;
     text-align: left;
     margin-top:.5rem;
 }

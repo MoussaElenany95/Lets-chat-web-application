@@ -1,8 +1,6 @@
 $(function () {
-    //get country time zone
-    var timezone_offset_minutes = new Date().getTimezoneOffset();
-    timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
-    document.cookie = "timezone="+timezone_offset_minutes;
+    //get num of uploads file
+    var number_of_uploads = 0;
 
     //On resize
     var width = $(window).width();
@@ -200,6 +198,7 @@ $(function () {
     });
     //chat upload file
     $("#chat-file-upload").on("change",function () {
+            number_of_uploads++;
             ajaxSendFile($(this));
     });
 
@@ -239,166 +238,203 @@ $(function () {
         }
 
     },3000);
-});
 
-function ajaxSendFile(elemet) {
-    //Get file name
-    var file_name =elemet.val().trim();
+    //Send file
+    function ajaxSendFile(elemet) {
+        //Make waiting status
+        $(".wait-file-upload").html("<img class='loading-file' src='/assets/images/loading.gif'> Sending "+number_of_uploads+" files....");
+        // Get file name
+        var file_name =elemet.val().trim();
 
-    if (file_name !== ""){
-        $.ajax({
-            type: "POST",
-            url: "/send/file",
-            data: new FormData($(".chat-form-container")[0]),
-            contentType:false,
-            processData:false,
-            encode:"multipart/form-data",
-            dataType:"JSON",
-            success:function (result) {
-                //get error from server
-                if (result.error){
+        if (file_name !== ""){
+            $.ajax({
+                type: "POST",
+                url: "/send/file",
+                data: new FormData($(".chat-form-container")[0]),
+                contentType:false,
+                processData:false,
+                encode:"multipart/form-data",
+                dataType:"JSON",
+                success:function (result) {
+
+                    --number_of_uploads;
+
+                    if ( number_of_uploads > 0){
+
+                        $(".wait-file-upload").html("<img class='loading-file' src='/assets/images/loading.gif'> Sending "+number_of_uploads+" files....");
+
+                    }else {
+
+                        $(".wait-file-upload").empty();
+
+                    }
+
+                    //get error from server
+                    if (result.error){
+
+                        $(".send-file-error").addClass("show-error");
+                        $(".send-file-error-text").text(result.error);
+
+                        setTimeout(function () {
+                            $(".send-file-error").removeClass("show-error");
+                        },3000);
+
+                    }else{
+
+                        getAllMessages();
+                        $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+
+                    }
+
+                },error:function () {
+
+                    --number_of_uploads;
+                    console.log(number_of_uploads);
+
+                    if ( number_of_uploads > 0){
+                        $(".wait-file-upload").html("<img class='loading-file' src='/assets/images/loading.gif'> Sending "+number_of_uploads+" files....");
+                    }else {
+                        $(".wait-file-upload").empty();
+                    }
 
                     $(".send-file-error").addClass("show-error");
-                    $(".send-file-error-text").text(result.error);
+                    $(".send-file-error-text").text("Failed to upload file check your connection");
 
                     setTimeout(function () {
                         $(".send-file-error").removeClass("show-error");
                     },3000);
-
-                }else{
-
-                    getAllMessages();
-                    $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
-
                 }
+            });
+        }
+    }
+
+    //Ajax send message
+    function sendMessage(event) {
+
+        //Get message content
+        var message = $("#send_message").val().trim();
+
+        // //clear message field
+        $(".chat-form-container").trigger("reset");
+        event.preventDefault();
+
+        ajaxSendMessage(message);
+    }
+
+//Send message
+    function ajaxSendMessage(message) {
+
+        let waiting_message = $(".new-waiting-message").append('' +
+            '<div class="right-message-area">' +
+            '<div class="right-message">' +
+            '<div class="right-sender-name-date"> ' +
+            '<span class="message-time"></span> ' +
+            '</div> ' +
+            '<div class="right-message-content">' +
+            '<p>'+message+'</p> ' +
+            '<span class="waiting">sending...<img class="loading" src="/assets/images/loading.gif"></span>'+
+            '</div>' +
+            ' </div> ' +
+            '</div>');
+
+        $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+
+
+
+        if (message.length > 0){
+            $.ajax({
+                type: "POST",
+                url:"/send/message",
+                dataType:"JSON",
+                data:{ send_message:message},timeout:3000,success:function (result) {
+
+                    if (result.status === "success"){
+                        $(".new-waiting-message > div").last().remove();
+
+                        getAllMessages();
+
+                    }
+                }
+                ,error:function () {
+                    let error_msg = waiting_message.find(".waiting");
+                    error_msg.html("<div><a class='retry-send-message'>Failed to send , click to retry</a>");
+                }},
+
+            );
+
+        }
+
+
+    }
+
+    //validate password field
+    function validatePasswordFields(password,confirm) {
+        if (password.val().length < 6 ){
+            $("#new_password_error").text("Minimum Password 6 characters");
+            return false;
+        }else if(password.val().length > 32){
+            $("#new_password_error").text("Maximum Password 32 characters");
+            return false;
+        }else{
+            $("#new_password_error").empty();
+        }
+
+        if( password.val() !== confirm.val()) {
+            $("#confirm_password_error").text("password does't match");
+            return false;
+        }else{
+            $("#confirm_password_error").empty();
+        }
+
+        return true;
+
+
+    }
+    //validate name
+    function isValidName(name) {
+
+        return name.length >= 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name.trim());
+    }
+    //validate email
+    function isValidEmail(email) {
+
+        if(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.val().trim())){
+            $("#email_feedback").empty();
+            return true;
+        }else{
+            $("#email_feedback").text("Please enter a valid email address");
+            return false;
+        }
+    }
+    //validate image
+    function validateImageField(image) {
+
+        var imageVal = image.val();
+
+        var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1).toLowerCase();
+
+        if (fileType !== "jpeg" && fileType!== "jpg" && fileType !== "png"){
+            $("#image_feedback").text("Enter a valid image ");
+            return false;
+        }else{
+            $("#image_feedback").empty();
+            return true;
+        }
+
+
+
+    }
+    //Get all messages
+    function getAllMessages() {
+        $.ajax({
+            type:"GET",
+            url:"/get/messages",
+            data:{messages:true},
+            success:function (result) {
+                $(".chat-old-messages").html(result);
             }
         });
     }
-}
-//Ajax send message
-function sendMessage(event) {
-
-    //Get message content
-    var message = $("#send_message").val().trim();
-
-    // //clear message field
-    $(".chat-form-container").trigger("reset");
-    event.preventDefault();
-
-    ajaxSendMessage(message);
-}
-
-//Send message
-function ajaxSendMessage(message) {
-
-    let waiting_message = $(".new-waiting-message").append('' +
-        '<div class="right-message-area">' +
-        '<div class="right-message">' +
-        '<div class="right-sender-name-date"> ' +
-        '<span class="message-time"></span> ' +
-        '</div> ' +
-        '<div class="right-message-content">' +
-        '<p>'+message+'</p> ' +
-        '<span class="waiting">sending...<img class="loading" src="/assets/images/loading.gif"></span>'+
-        '</div>' +
-        ' </div> ' +
-        '</div>');
-
-    $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+});
 
 
-
-    if (message.length > 0){
-        $.ajax({
-            type: "POST",
-            url:"/send/message",
-            dataType:"JSON",
-            data:{ send_message:message},timeout:3000,success:function (result) {
-
-                if (result.status === "success"){
-                    $(".new-waiting-message > div").last().remove();
-
-                    getAllMessages();
-
-                }
-            }
-            ,error:function () {
-                let error_msg = waiting_message.find(".waiting");
-                error_msg.html("<div><a class='retry-send-message'>Failed to send , click to retry</a>");
-            }},
-
-        );
-
-    }
-
-
-}
-
-//validate password field
-function validatePasswordFields(password,confirm) {
-    if (password.val().length < 6 ){
-        $("#new_password_error").text("Minimum Password 6 characters");
-        return false;
-    }else if(password.val().length > 32){
-        $("#new_password_error").text("Maximum Password 32 characters");
-        return false;
-    }else{
-        $("#new_password_error").empty();
-    }
-
-    if( password.val() !== confirm.val()) {
-        $("#confirm_password_error").text("password does't match");
-        return false;
-    }else{
-        $("#confirm_password_error").empty();
-    }
-
-    return true;
-
-
-}
-//validate name
-function isValidName(name) {
-
-    return name.length >= 3 && (/^[a-zA-Z]+(([ ][a-zA-Z ])?[a-zA-Z]*)*$/).test(name.trim());
-}
-//validate email
-function isValidEmail(email) {
-
-    if(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email.val().trim())){
-        $("#email_feedback").empty();
-        return true;
-    }else{
-        $("#email_feedback").text("Please enter a valid email address");
-        return false;
-    }
-}
-//validate image
-function validateImageField(image) {
-
-    var imageVal = image.val();
-
-    var fileType = imageVal.substring((imageVal.lastIndexOf('.'))+1).toLowerCase();
-
-    if (fileType !== "jpeg" && fileType!== "jpg" && fileType !== "png"){
-        $("#image_feedback").text("Enter a valid image ");
-        return false;
-    }else{
-        $("#image_feedback").empty();
-        return true;
-    }
-
-
-
-}
-//Get all messages
-function getAllMessages() {
-    $.ajax({
-        type:"GET",
-        url:"/get/messages",
-        data:{messages:true},
-        success:function (result) {
-            $(".chat-old-messages").html(result);
-        }
-    });
-}

@@ -84,6 +84,7 @@ if (!isset($_SESSION['user_id'])) {
                         <img class="file-upload-icon" src="../assets/images/img-upload.png">
                         <img class="file-upload-icon" src="../assets/images/file-upload.png">
                     </label>
+                    <span class='wait-file-upload'></span>
                     <input type="file" name="chat-upload-file" id="chat-file-upload">
                 </div>
             </form>

@@ -83,9 +83,6 @@ function placeMessage($message){
 }
 function getMessageTime($dbmsg_time){
 
-        $time_zone = timezone_name_from_abbr("", $_COOKIE['timezone']*60, false);
-        date_default_timezone_set("africa/cairo");
-
         $msg_time      = strtotime($dbmsg_time);
         $current_time  = time();
 
