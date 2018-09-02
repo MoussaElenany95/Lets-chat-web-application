@@ -14,11 +14,11 @@
 
             //get message time
             $msg_time = getMessageTime($message->msg_time);
-
+            //get message type
+            $msg_content = placeMessage($message);
             //show messages
            if ($_SESSION['user_id'] == $message->user_id ):
-               //get message type
-               $msg_content = placeMessage($message);
+
                 echo " <div class=\"right-message-area\">
                     <div class=\"right-message\">
     
