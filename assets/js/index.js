@@ -324,7 +324,7 @@ function ajaxSendMessage(message) {
             }
             ,error:function () {
                 let error_msg = waiting_message.find(".waiting");
-                error_msg.html("<div><a onclick='alert('sssssss')' class='retry-send-message'>Failed to send , click to retry</a>");
+                error_msg.html("<div><a class='retry-send-message'>Failed to send , click to retry</a>");
             }},
 
         );
