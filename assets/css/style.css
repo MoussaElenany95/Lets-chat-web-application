@@ -531,6 +531,7 @@ label{
 }
 .chat-file-img{
     width: 30rem;
+    padding: .5rem .5rem;
     height: auto;
 }
 .change-form-area{
@@ -607,6 +608,9 @@ label{
     #chat-right-area{
         width: 100%;
 
+    }
+    .chat-file-img{
+        width: 20rem;
     }
     .left-message{
         max-width: 100%;
