@@ -234,7 +234,7 @@ $(function () {
 
         let total_scroll = scroll_height-(user_scroll+scroll_size);
         //to scroll to new message
-        if ( total_scroll <= 50 ){
+        if ( total_scroll <= 5 ){
 
             $(".chat-messages").stop().animate({scrollTop:scroll_height},100);
         }
