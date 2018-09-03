@@ -4,7 +4,6 @@ $(function () {
 
     //On resize
     var width = $(window).width();
-    var height  = $(document).height();
     $(window).on("resize",function () {
        var resize = $(this).width();
         if (resize <= 800 && resize != width ){
@@ -220,24 +219,27 @@ $(function () {
     setTimeout(function () {
 
         let scroll_length = $(".chat-messages")[0].scrollHeight;
-        $(".chat-messages").animate({scrollTop:scroll_length},1000);
+        $(".chat-messages").stop().animate({scrollTop:scroll_length},2000);
 
-    },1000);
+    },2000);
 
     //get all messages after 3 seconds
     setInterval(function () {
-        let scroll_height = $(".chat-messages")[0].scrollHeight;
-        let user_scroll   = $(".chat-messages").scrollTop();
-        let scroll_size   = $(".chat-messages")[0].clientHeight;
+
+        let scroll_height = Math.floor($(".chat-messages")[0].scrollHeight);
+        let user_scroll   = Math.floor($(".chat-messages").scrollTop());
+        let scroll_size   = Math.floor($(".chat-messages")[0].clientHeight);
 
         getAllMessages();
 
+        let total_scroll = scroll_height-(user_scroll+scroll_size);
         //to scroll to new message
-        if (scroll_height === user_scroll+scroll_size  ){
-            $(".chat-messages").animate({scrollTop:scroll_height},1000);
+        if ( total_scroll <= 50 ){
+
+            $(".chat-messages").stop().animate({scrollTop:scroll_height},100);
         }
 
-    },3000);
+    },1000);
 
     //Send file
     function ajaxSendFile(elemet) {
@@ -282,7 +284,7 @@ $(function () {
                     }else{
 
                         getAllMessages();
-                        $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
+                        $(".chat-messages").stop().animate({scrollTop:$(".chat-messages")[0].scrollHeight},200);
 
                     }
 
@@ -324,29 +326,28 @@ $(function () {
 //Send message
     function ajaxSendMessage(message) {
 
-        let waiting_message = $(".new-waiting-message").append('' +
-            '<div class="right-message-area">' +
-            '<div class="right-message">' +
-            '<div class="right-sender-name-date"> ' +
-            '<span class="message-time"></span> ' +
-            '</div> ' +
-            '<div class="right-message-content">' +
-            '<p>'+message+'</p> ' +
-            '<span class="waiting">sending...<img class="loading" src="/assets/images/loading.gif"></span>'+
-            '</div>' +
-            ' </div> ' +
-            '</div>');
-
-        $(".chat-messages").animate({scrollTop:$(".chat-messages")[0].scrollHeight},1000);
-
-
-
         if (message.length > 0){
+
+            let waiting_message = $(".new-waiting-message").append('' +
+                '<div class="right-message-area">' +
+                '<div class="right-message">' +
+                '<div class="right-sender-name-date"> ' +
+                '<span class="message-time"></span> ' +
+                '</div> ' +
+                '<div class="right-message-content">' +
+                '<p>'+$(this).text(message)+'</p> ' +
+                '<span class="waiting">sending...<img class="loading" src="/assets/images/loading.gif"></span>'+
+                '</div>' +
+                ' </div> ' +
+                '</div>');
+
+            $(".chat-messages").stop().animate({scrollTop:$(".chat-messages")[0].scrollHeight},100);
+
             $.ajax({
                 type: "POST",
                 url:"/send/message",
                 dataType:"JSON",
-                data:{ send_message:message},timeout:3000,success:function (result) {
+                data:{ send_message:message},timeout:5000,success:function (result) {
 
                     if (result.status === "success"){
                         $(".new-waiting-message > div").last().remove();
