@@ -364,7 +364,6 @@ label{
     margin: 1rem;
     word-wrap: break-word;
     max-width: 50%;
-    width: auto;
 }
 
 .sender-name{
@@ -377,9 +376,9 @@ label{
     margin-left: 4rem;
 }
 .left-message-content{
+    width: auto;
     word-wrap: break-word;
     padding: .8rem;
-    max-width: 90%;
     color: var(--color-white);
     font-size: 1.5rem;
     background:linear-gradient(to right,var(--color-blue-light),var(--color-blue-dark));
@@ -413,7 +412,6 @@ label{
 }
 .right-message-content{
     width: auto;
-    max-width: 90%;
     padding: .8rem;
     word-wrap: break-word;
     color: var(--color-black);
@@ -628,7 +626,7 @@ label{
         width: 20rem;
     }
     .left-message{
-        max-width: 90%;
+        max-width: 80%;
     }
     .sender-name{
         font-size: 1rem;
