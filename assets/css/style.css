@@ -586,6 +586,12 @@ label{
     background: var(--color-silver2);
     border-radius: 10px;
 }
+@media(max-height: 600px)  {
+    #nav{
+        min-height: 40px;
+    }
+}
+
 @media(max-width: 800px)  {
     .chat-container{
         flex-wrap: wrap;
