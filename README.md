@@ -1,4 +1,5 @@
 # Lets chat web application 
-Let's-Chat website with php and Jquery __
+Let's-Chat website with php and Jquery
+
 ![Alt Text](demo.gif)
 
